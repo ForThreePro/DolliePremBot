@@ -36,25 +36,25 @@ let handler = async (m, { conn, text, usedPrefix, command, args }) => {
         await m.react('✅')
     }
 
-    // 3. QC / QUOTLY - ARREGLADO
+    // 3. QC / QUOTLY
     if (command === 'qc' || command === 'quotly') {
         let mentionedJid = m.mentionedJid && m.mentionedJid[0]? m.mentionedJid[0] : null
         let authorName, txt, pp
 
-        if (!args.length &&!(m.quoted && m.quoted.text)) return error('Ingresa un texto para el sticker quotly\n> Ejemplo:.qc Hola mundo\n> Ejemplo:.qc @user Nombre / Texto\n> Ejemplo:.qc Nombre / Texto')
+        if (!args.length &&!(m.quoted && m.quoted.text)) return error(`Uso: ${usedPrefix}qc <texto>\n> ${usedPrefix}qc @user Nombre / Texto\n> ${usedPrefix}qc Nombre / Texto`)
 
         if (mentionedJid && args.join(" ").includes("/")) {
             const joined = args.slice(1).join(" ")
             const [authorNameRaw,...textParts] = joined.split("/")
             authorName = authorNameRaw?.trim() || "Anónimo"
             txt = textParts.join("/").trim()
-            pp = await conn.profilePictureUrl(mentionedJid, 'image').catch(_ => 'https://telegra.ph/file/320b066dc81928b782c7b.png')
+            pp = await conn.profilePictureUrl(mentionedJid, 'image').catch(_ => 'https://files.evogb.win/VTW5WO.jpg')
         } else if (!mentionedJid && args.join(" ").includes("/")) {
             const joined = args.join(" ")
             const [authorNameRaw,...textParts] = joined.split("/")
             authorName = authorNameRaw?.trim() || "Anónimo"
             txt = textParts.join("/").trim()
-            pp = "https://files.catbox.moe/dpeqsr.jpg"
+            pp = "https://files.evogb.win/VTW5WO.jpg"
         } else if (!mentionedJid && args.length >= 1) {
             txt = args.join(" ")
             try {
@@ -62,7 +62,7 @@ let handler = async (m, { conn, text, usedPrefix, command, args }) => {
             } catch {
                 authorName = "Anónimo"
             }
-            pp = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://telegra.ph/file/320b066dc81928b782c7b.png')
+            pp = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://files.evogb.win/VTW5WO.jpg')
         } else if (m.quoted && m.quoted.text) {
             txt = m.quoted.text
             try {
@@ -70,7 +70,7 @@ let handler = async (m, { conn, text, usedPrefix, command, args }) => {
             } catch {
                 authorName = "Anónimo"
             }
-            pp = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://telegra.ph/file/320b066dc81928b782c7b.png')
+            pp = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://files.evogb.win/VTW5WO.jpg')
         } else {
             return error('Formato inválido')
         }
@@ -117,17 +117,12 @@ let handler = async (m, { conn, text, usedPrefix, command, args }) => {
     }
 
     function error(msg) {
-        let texto = `
-🐉 𓆩 𝗦𝗢𝗡 𝗚𝗢𝗞𝗨 𝗣𝗥𝗘𝗠 𓆪 🐉
+        let texto = `𝐃𝐎𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
 
-.⃟𖥔 ݁. 𖦹˙— \`\`𝐄𝐑𝐎𝐑\`\` —˙𖦹.🏆꒷
-
-──愛 *𝗡𝗢𝗧𝗔* ╏ ⚡
-⚡ ➛ ${msg}
-
-━━━━━━━━━━━
-*Owner*: @whois.yallico
-> *"Algo salió mal en la técnica"* 💥`
+╭─「 *ERROR* 」─╮
+│ ❌ *Algo salió mal*
+╰─────────────
+> ${msg} 💌`
         m.reply(texto)
     }
 }
