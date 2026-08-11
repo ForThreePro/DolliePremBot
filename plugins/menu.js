@@ -31,7 +31,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     else groups[category].push(plugin.help)
   }
 
-  // CATEGORÍAS CON DISEÑO FIJO
+  // CATEGORÍAS COQUETAS SIN EMOJI POR DEFECTO
   const catDesign = {
     config: { icon: '⚙️', name: 'CONFIG' },
     fun: { icon: '🎠', name: 'FUN' },
@@ -49,10 +49,10 @@ let handler = async (m, { conn, usedPrefix }) => {
     info: { icon: '🌸', name: 'INFOR' },
     owner: { icon: '🥇', name: 'OWNER' },
     sticker: { icon: '🪅', name: 'STIKERS' },
-    otros: { icon: '📁', name: 'OTROS' }
+    otros: { icon: '✨', name: 'EXTRAS' } // <- CAMBIO COQUETA
   }
 
-  let menu = `╭─🎀─ *『 𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓*─🎀─╮
+  let menu = `╭─🎀─ *『 𝐃𝐎𝐋𝐈𝐄 𝐁𝐎𝐓*─🎀─╮
 │ ✨ *HOLA* @${m.sender.split('@')[0]}💞 💫
 │
 │ 🎀 *Prefijo:* [ ${usedPrefix} ]
@@ -70,7 +70,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 `
 
   for (let category in groups) {
-    let design = catDesign[category] || { icon: '📁', name: category.toUpperCase() }
+    let design = catDesign[category] || { icon: '💖', name: 'MISC' } // <- CAMBIO COQUETA
     menu += `╭───${design.icon}${design.name}────╮\n`
     for (let cmd of groups[category]) {
       menu += `│ ${design.icon} ${usedPrefix}${cmd}\n`
@@ -79,11 +79,11 @@ let handler = async (m, { conn, usedPrefix }) => {
   }
 
   menu += `╭────────────────╮
-│ 🎀 *BOT:* 𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓
-│ 🌸 *Creador:* 𝐃𝐨𝐥𝐥𝐢𝐞 𝐭𝐞𝐚𝐦👑
+│ 🎀 *BOT:* 𝐃𝐎𝐋𝐈𝐄 𝐁𝐎𝐓
+│ 🌸 *Creador:* 𝐃𝐨𝐥𝐢𝐞 𝐭𝐞𝐚𝐦👑
 │ ✨ *Versión:* 3.0.0 Premium Edition
 │
-│ > *“𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓 al servicio del chat”* 💝
+│ > *“𝐃𝐎𝐋𝐈𝐄 𝐁𝐎𝐓 al servicio del chat”* 💝
 ╰────────────────╯`
 
   await conn.sendMessage(m.chat, { delete: loadMsg.key })
