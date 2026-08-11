@@ -4,40 +4,34 @@ let handler = async (m, { conn, isOwner, isAdmin, isROwner, command }) => {
   let type = command.toLowerCase()
 
   if (!(isAdmin || isOwner || isROwner)) {
-    return conn.reply(m.chat, `🐉 𓆩 𝗦𝗢𝗡 𝗚𝗢𝗞𝗨 𝗣𝗥𝗘𝗠 𓆪 🐉\n\n❌ *Solo admins pueden usar este comando*`, m)
+    return conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> ❌ *Solo admins pueden usar este comando*`, m)
   }
 
   switch (type) {
     case 'banchat': case 'banearchat':
-      if (chat.isBanned) return m.reply(`🐉 𓆩 𝗦𝗢𝗡 𝗚𝗢𝗞𝗨 𝗣𝗥𝗘𝗠 𓆪 🐉\n\n⚠️ *Este chat ya se encuentra baneado.*`)
+      if (chat.isBanned) return m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> ⚠️ *Este chat ya se encuentra baneado*`)
       chat.isBanned = true
-      await conn.reply(m.chat, `🐉 𓆩 𝗖𝗛𝗔𝗧 𝗕𝗔𝗡𝗘𝗔𝗗𝗢 𓆪 🐉
+      await conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
 
-.⃟𖥔 ݁. 𖦹˙— \`\`BAN\`\` —˙𖦹.🏆꒷
-
-🚫 *El bot ha sido desactivado en este grupo*
-💬 *No responderé a ningún comando hasta que sea desbloqueado*
-
-👑 *Por:* @${m.sender.split('@')[0]}
-
-━━━━━━━━━━━
-*Powered by*: SON GOKU PREM 💥`, m, { mentions: [m.sender] })
+╭─「 *CHAT BANEADO* 」─╮
+│ 🚫 *Estado:* Bot desactivado
+│ 💬 *Nota:* No responderé comandos
+│ 👑 *Por:* @${m.sender.split('@')[0]}
+╰─────────────
+> *Hasta que sea desbloqueado* 🔒`, m, { mentions: [m.sender] })
       break
 
     case 'unbanchat': case 'desbanearchat':
-      if (!chat.isBanned) return m.reply(`🐉 𓆩 𝗦𝗢𝗡 𝗚𝗢𝗞𝗨 𝗣𝗥𝗘𝗠 𓆪 🐉\n\n⚠️ *Este chat no está baneado.*`)
+      if (!chat.isBanned) return m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> ⚠️ *Este chat no está baneado*`)
       chat.isBanned = false
-      await conn.reply(m.chat, `🐉 𓆩 𝗖𝗛𝗔𝗧 𝗗𝗘𝗦𝗕𝗔𝗡𝗘𝗔𝗗𝗢 𓆪 🐉
+      await conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
 
-.⃟𖥔 ݁. 𖦹˙— \`\`UNBAN\`\` —˙𖦹.🏆꒷
-
-🌀 *El bot vuelve a estar activo en este grupo*
-⚡ *Ya pueden utilizar todos los comandos con normalidad*
-
-👑 *Por:* @${m.sender.split('@')[0]}
-
-━━━━━━━━━━━
-*Powered by*: SON GOKU PREM 💥`, m, { mentions: [m.sender] })
+╭─「 *CHAT DESBANEADO* 」─╮
+│ 🌀 *Estado:* Bot activado
+│ ⚡ *Nota:* Comandos disponibles
+│ 👑 *Por:* @${m.sender.split('@')[0]}
+╰─────────────
+> *Pueden usarme con normalidad* 💌`, m, { mentions: [m.sender] })
       break
 
     default:
