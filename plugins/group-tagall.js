@@ -53,16 +53,16 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
     // Ordenar las banderas según el orden definido
     const orderedFlags = countryFlags.map(c => c.bandera).concat(['🚩'])
 
-    // Texto con diseño SON GOKU PREM
-    let messageText = `🐉 𓆩 𝗜𝗡𝗩𝗢𝗖𝗔𝗖𝗜𝗢𝗡 𝗚𝗘𝗡𝗘𝗥𝗔𝗟 𓆪 🐉
+    // Texto con diseño DOLLIE BOT
+    let messageText = `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
 
-.⃟𖥔 ݁. 𖦹˙— \`\` ${groupName} \`\` —˙𖦹.🏆꒷
+╭─「 *INVOCACIÓN GENERAL* 」─╮
+│ 👥 *Grupo:* ${groupName}
+│ 📊 *Integrantes:* ${participants.length}
+│ 💌 *Mensaje:* ${customMessage}
+╰─────────────
 
-──愛 *𝗜𝗡𝗙𝗢* ╏ ⚡
-⚡ ➛ *Integrantes:* ${participants.length}
-⚡ ➛ *Mensaje:* ${customMessage}
-
-──愛 *𝗠𝗜𝗘𝗠𝗕𝗥𝗢𝗦 𝗣𝗢𝗥 𝗣𝗔𝗜𝗦* ╏ 🌍
+├─「 *MIEMBROS POR PAÍS* 」─
 `
 
     for (const flag of orderedFlags) {
@@ -75,10 +75,8 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
       }
     }
 
-    messageText += `
-━━━━━━━━━━━
-*Powered by*: SON GOKU PREM 💥
-*Owner*: @whois.yallico`
+    messageText += `╰─────────────
+> *Mencionados por:* @${m.sender.split('@')[0]} 💌`
 
     // Imagen a puro link - sin catalogo.png
     const imageUrl = 'https://files.evogb.win/qS154V.jpg'
@@ -94,7 +92,7 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
   } catch (error) {
     console.error("[ERROR EN TODOS]:", error)
     await m.react('❌')
-    conn.reply(m.chat, `❌ Ocurrió un error al ejecutar el comando.`, m)
+    conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> ❌ *Ocurrió un error al ejecutar el comando*`, m)
   }
 }
 
