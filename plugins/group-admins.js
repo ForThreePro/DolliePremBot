@@ -1,12 +1,12 @@
 const handler = async (m, { conn, command }) => {
   if (!m.mentionedJid[0] &&!m.quoted) {
-    let texto = `🐉 𓆩 𝗦𝗢𝗡 𝗚𝗢𝗞𝗨 𝗣𝗥𝗘𝗠 𓆪 🐉
+    let texto = `🤍 *MANUAL DULCE* 🤍
 
 *Uso:*
 .${command} @user → Para ${command === 'promote' || command === 'promover' || command === 'daradmin'? 'promover' : 'degradar'}
 .${command} → Responde al mensaje del user
 
-> *Solo admins*`
+> *Solo admins pueden usarlo* 🌸`
     return m.reply(texto, m.chat)
   }
 
@@ -14,24 +14,38 @@ const handler = async (m, { conn, command }) => {
   let action = command === 'promote' || command === 'promover' || command === 'daradmin'? 'promote' : 'demote'
 
   let msgAccion = action === 'promote'
-   ? `🐉 𓆩 𝗨𝗦𝗨𝗔𝗥𝗜𝗢 𝗣𝗥𝗢𝗠𝗢𝗩𝗜𝗗𝗢 𓆪 🐉
+  ? `🤍 *ASCENSO DULCE* 🤍
 
-.⃟𖥔 ݁. 𖦹˙— \`\`PROMOTE\`\` —˙𖦹.🏆꒷
+╭─「 *CORONACION* 」─╮
+│ *𝐔𝐒𝐔𝐀𝐑𝐈𝐎* : @${user.split('@')[0]}
+│ *𝐄𝐒𝐓𝐀𝐃𝐎* : ✅ *𝐀𝐇𝐎𝐑𝐀 𝐄𝐒 𝐀𝐃𝐌𝐈𝐍*
+│ *𝐏𝐑𝐎𝐌𝐎𝐕𝐈𝐃𝐎 𝐏𝐎𝐑* : @${m.sender.split('@')[0]}
+╰─────────────
 
-👑 *Nuevo Admin:* @${user.split('@')[0]}
-⚡ *Por:* @${m.sender.split('@')[0]}
+├─「 *NUEVOS PODERES* 」─
+│ ✨ Expulsar y Promover
+│ ✨ Editar info del grupo
+│ ✨ Cambiar ajustes
+│ ✨ Mandar anuncios
+╰─────────────
 
-━━━━━━━━━━━
-*Powered by*: SON GOKU PREM 💥`
-    : `🐉 𓆩 𝗨𝗦𝗨𝗔𝗥𝗜𝗢 𝗗𝗘𝗚𝗥𝗔𝗗𝗔𝗗𝗢 𓆪 🐉
+> *Con grandes poderes vienen grandes dulzuras* 🌸`
+    : `🤍 *DESCENSO DULCE* 🤍
 
-.⃟𖥔 ݁. 𖦹˙— \`\`DEMOTE\`\` —˙𖦹.🏆꒷
+╭─「 *DEGRADACION* 」─╮
+│ *𝐔𝐒𝐔𝐀𝐑𝐈𝐎* : @${user.split('@')[0]}
+│ *𝐄𝐒𝐓𝐀𝐃𝐎* : ❌ *𝐘𝐀 𝐍𝐎 𝐄𝐒 𝐀𝐃𝐌𝐈𝐍*
+│ *𝐃𝐄𝐆𝐑𝐀𝐃𝐀𝐃𝐎 𝐏𝐎𝐑* : @${m.sender.split('@')[0]}
+╰─────────────
 
-👢 *Ya no es Admin:* @${user.split('@')[0]}
-⚡ *Por:* @${m.sender.split('@')[0]}
+├─「 *PODERES REMOVIDOS* 」─
+│ 🚫 Expulsar y Promover
+│ 🚫 Editar info del grupo
+│ 🚫 Cambiar ajustes
+│ 🚫 Mandar anuncios
+╰─────────────
 
-━━━━━━━━━━━
-*Powered by*: SON GOKU PREM 💥`
+> *Todo poder vuelve a su origen* 🌸`
 
   await m.react(action === 'promote'? '👑' : '📉')
   await conn.groupParticipantsUpdate(m.chat, [user], action)
