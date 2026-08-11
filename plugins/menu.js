@@ -5,7 +5,7 @@ let handler = async (m, { conn, usedPrefix }) => {
   let loadMsg = await conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n⏳ *Cargando menú...*\n> Iniciando sistema`, m)
 
   let taguser = m.mentionedJid && m.mentionedJid[0]? m.mentionedJid[0] : m.quoted? m.quoted.sender : m.sender
-  let img = { url: 'https://files.evogb.win/qS154V.jpg' }
+  let img = { url: 'https://files.evogb.win/VTW5WO.jpg' }
 
   let uptime = process.uptime() * 1000
   let _uptime = clockString(uptime)
