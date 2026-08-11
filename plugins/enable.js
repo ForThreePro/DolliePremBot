@@ -41,6 +41,10 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     case 'audios':
       chat.audios = isEnable
       break
+    case 'welcome': case 'bienvenida':
+      if (m.isGroup &&!isAdmin) { return conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> ❌ *Solo admins*`, m); fail = true; break }
+      chat.bienvenida = isEnable
+      break
     case 'autoread': case 'autoleer':
       if (!isROwner) { return conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> ❌ *Solo Owner*`, m); fail = true; break }
       global.opts['autoread'] = isEnable
@@ -55,7 +59,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 
   if (fail) return
 
-  let catalogoImg = { url: 'https://files.evogb.win/qS154V.jpg' }
+  let catalogoImg = { url: 'https://files.evogb.win/VTW5WO.jpg' }
 
   let estadoTexto = isEnable? 'Activado 🌀' : 'Desactivado ✖️'
   let estadoEmoji = isEnable? '🟢' : '🔴'
@@ -76,8 +80,8 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
   }, { quoted: m })
 }
 
-handler.help = ['antilink', 'antibot', 'modoadmin', 'subbots', 'nsfw', 'audios', 'antiprivado', 'antispam', 'autoread'].map(v => v + ' on/off')
+handler.help = ['antilink', 'antibot', 'modoadmin', 'subbots', 'nsfw', 'audios', 'antiprivado', 'antispam', 'autoread', 'welcome'].map(v => v + ' on/off')
 handler.tags = ['config']
-handler.command = ['subbots', 'serbot', 'antispam', 'antilink', 'antibot', 'modoadmin', 'nsfw', 'antinopor', 'audios', 'autoleer', 'autoread', 'antiprivado']
+handler.command = ['subbots', 'serbot', 'antispam', 'antilink', 'antibot', 'modoadmin', 'nsfw', 'antinopor', 'audios', 'autoleer', 'autoread', 'antiprivado', 'welcome', 'bienvenida']
 
 export default handler
