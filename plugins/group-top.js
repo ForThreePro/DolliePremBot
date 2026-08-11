@@ -4,15 +4,18 @@ import path from 'path'
 let user = a => '@' + a.split('@')[0]
 
 function handler(m, { groupMetadata, command, conn, text }) {
-    if (!groupMetadata) return m.reply('🐉 *Este comando solo funciona en grupos*')
-    if (!text) return m.reply(`🐉 𓆩 𝗦𝗢𝗡 𝗚𝗢𝗞𝗨 𝗣𝗥𝗘𝗠 𓆪 🐉
+    if (!groupMetadata) return m.reply('𝐃𝐎𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> *Este comando solo funciona en grupos*')
+    if (!text) return m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
 
-*Ejemplo de uso:*
-.top *Mejores en PVP*
-.top *Más activos*`)
+╭─「 *TOP 10* 」─╮
+│ 🪄 *Ejemplo:*
+│ ${usedPrefix || '.'}top Mejores en PVP
+│ ${usedPrefix || '.'}top Más activos
+╰─────────────
+> *Escribe de qué es el top* 💌`)
 
     let ps = groupMetadata.participants.map(v => v.id)
-    if (ps.length < 10) return m.reply('⚡ *Se necesitan mínimo 10 miembros en el grupo*')
+    if (ps.length < 10) return m.reply('𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> ⚡ *Se necesitan mínimo 10 miembros en el grupo*')
 
     let a = ps.getRandom()
     let b = ps.getRandom()
@@ -31,12 +34,13 @@ function handler(m, { groupMetadata, command, conn, text }) {
 
     let vn = `https://hansxd.nasihosting.com/sound/sound${k}.mp3`
 
-    let top = `🐉 𓆩 𝗧𝗢𝗣 𝟭𝟬 𓆪 🐉
+    let top = `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
 
-.⃟𖥔 ݁. 𖦹˙— \`\` ${text.toUpperCase()} \`\` —˙𖦹.🏆꒷
+╭─「 *TOP 10* 」─╮
+│ 🏆 *Categoría:* ${text.toUpperCase()}
+╰─────────────
 
- ⤷ ┇ *RANKING* ：✿ 。
-
+├─「 *RANKING* 」─
 ${x} *1.* ${user(a)}
 ${x} *2.* ${user(b)}
 ${x} *3.* ${user(c)}
@@ -47,9 +51,8 @@ ${x} *7.* ${user(g)}
 ${x} *8.* ${user(h)}
 ${x} *9.* ${user(i)}
 ${x} *10.* ${user(j)}
-
-━━━━━━━━━━━
-*Powered by*: SON GOKU PREM 💥`
+╰─────────────
+> *Ranking aleatorio* ✨`
 
     m.reply(top, null, { mentions: [a, b, c, d, e, f, g, h, i, j]})
 }
