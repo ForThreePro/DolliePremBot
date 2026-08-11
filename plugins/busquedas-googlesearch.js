@@ -1,7 +1,10 @@
 import ytSearch from 'yt-search'
 
 let handler = async (m, { conn, text }) => {
-    if (!text) return m.reply(`🐉 𓆩 𝗦𝗢𝗡 𝗚𝗢𝗞𝗨 𝗣𝗥𝗘𝗠 𓆪 🐉\n\n✨ *¿Qué quieres buscar?*\n📌 *Ejemplo:* ${m.prefix}google Goku ultra instinto`)
+    if (!text) return m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+
+> 🪄 *¿Qué quieres buscar?*
+> 🪞 *Ejemplo:* ${m.prefix}google Goku ultra instinto`)
 
     await m.react('🔍')
 
@@ -11,26 +14,26 @@ let handler = async (m, { conn, text }) => {
 
         if (!results.length) {
             await m.react('❌')
-            return m.reply('⚠️ *No encontré resultados.*')
+            return m.reply('𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> ⚠️ *No encontré resultados*')
         }
 
-        let txt = `🐉 𓆩 𝗕𝗨𝗦𝗖𝗔𝗗𝗢𝗥 𝗚𝗢𝗞𝗨 𓆪 🐉
+        let txt = `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
 
-.⃟𖥔 ݁. 𖦹˙— \`\`RESULTADOS\`\` —˙𖦹.🏆꒷
-
-🔎 *Buscando:* ${text}
+╭─「 *RESULTADOS* 」─╮
+│ 🪞 *Buscando:* ${text}
+╰─────────────
 
 ${results.map((v, i) => {
-            return `*${i + 1}.* *${v.title}*
-🕒 *Duración:* ${v.timestamp}
-👁️ *Vistas:* ${v.views}
-👤 *Canal:* ${v.author.name}
-🔗 ${v.url}`
+            return `╭─ ${i + 1} ─╮
+│ 🎬 *${v.title}*
+│ ⏳ *Duración:* ${v.timestamp}
+│ 👁️ *Vistas:* ${v.views.toLocaleString()}
+│ 👤 *Canal:* ${v.author.name}
+│ 🔗 ${v.url}
+╰─────────`
         }).join('\n\n')}
 
-━━━━━━━━━━━━━━
-*Powered by*: SON GOKU PREM 💥
-*Tip:* Usa .ytmp4 o .ytmp3 + el link`
+> *Tip:* Usa .ytmp4 o .ytmp3 + el link 💌`
 
         await conn.reply(m.chat, txt, m)
         await m.react('✅')
@@ -38,7 +41,7 @@ ${results.map((v, i) => {
     } catch (e) {
         console.error(e)
         await m.react('❌')
-        m.reply('⚠️ *Error:* No se pudo realizar la búsqueda.')
+        m.reply('𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> ⚠️ *Error:* No se pudo realizar la búsqueda')
     }
 }
 
