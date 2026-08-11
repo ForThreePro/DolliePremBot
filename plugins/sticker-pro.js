@@ -117,7 +117,7 @@ let handler = async (m, { conn, text, usedPrefix, command, args }) => {
     }
 
     function error(msg) {
-        let texto = `𝐃𝐎𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+        let texto = `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
 
 ╭─「 *ERROR* 」─╮
 │ ❌ *Algo salió mal*
