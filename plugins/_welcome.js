@@ -1,18 +1,35 @@
 import { WAMessageStubType } from '@whiskeysockets/baileys'
 
 const handler = async (m, { conn, args, isAdmin, isOwner }) => {
-  if (!isAdmin &&!isOwner) return conn.reply(m.chat, `❌ *Solo admins pueden usar este comando*`, m)
+  if (!isAdmin &&!isOwner) return conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> ❌ *Solo admins pueden usar este comando*`, m)
   let chat = global.db.data.chats[m.chat]
   if (!chat) global.db.data.chats[m.chat] = {}
 
   if (/on/i.test(args[0])) {
     chat.bienvenida = true
-    await conn.reply(m.chat, `🐉 𓆩 𝗕𝗜𝗘𝗡𝗩𝗘𝗡𝗜𝗗𝗔 𓆪 🐉\n\n🟢 *Activada con audios*`, m)
+    await conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+
+╭─「 *BIENVENIDA* 」─╮
+│ 🟢 *Estado:* Activada
+│ 🎵 *Audios:* Activados
+╰─────────────
+> *Ahora saludaré a los nuevos* 💌`, m)
   } else if (/off/i.test(args[0])) {
     chat.bienvenida = false
-    await conn.reply(m.chat, `🐉 𓆩 𝗕𝗜𝗘𝗡𝗩𝗘𝗡𝗜𝗗𝗔 𓆪 🐉\n\n🔴 *Desactivada*`, m)
+    await conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+
+╭─「 *BIENVENIDA* 」─╮
+│ 🔴 *Estado:* Desactivada
+╰─────────────
+> *No enviaré mensajes de entrada/salida* ✨`, m)
   } else {
-    await conn.reply(m.chat, `🐉 𓆩 𝗦𝗢𝗡 𝗚𝗢𝗞𝗨 𝗣𝗥𝗘𝗠 𓆪 🐉\n\n📌 *Uso:* ${m.prefix}bienvenida on/off`, m)
+    await conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+
+╭─「 *BIENVENIDA* 」─╮
+│ 🪄 *Uso:* ${m.prefix}bienvenida on
+│ 🪄 *Uso:* ${m.prefix}bienvenida off
+╰─────────────
+> *Activa o desactiva los mensajes* 💌`, m)
   }
 }
 
@@ -37,7 +54,7 @@ handler.before = async function (m, { conn, groupMetadata }) {
     try {
       pp = await conn.profilePictureUrl(userJid, 'image')
     } catch {
-      pp = 'https://files.evogb.win/qS154V.jpg' // TU LINK DE FALLBACK
+      pp = 'https://files.evogb.win/VTW5WO.jpg' // TU LINK DE FALLBACK
     }
 
     const userTag = `@${userJid.split('@')[0]}`
@@ -51,19 +68,39 @@ handler.before = async function (m, { conn, groupMetadata }) {
       case WAMessageStubType.GROUP_PARTICIPANT_ADD:
         audio = chat.audiowelcome
         txt = chat.customWelcome? chat.customWelcome.replace(/@user/gi, userTag).replace(/@group/gi, groupName).replace(/@desc/gi, groupDesc) :
-`🐉 𓆩 𝗡𝗨𝗘𝗩𝗢 𝗚𝗨𝗘𝗥𝗘𝗥𝗢 𓆪 🐉\n\n⚡ *${userTag}* se unió a *${groupName}*\n📊 *Miembro N°:* ${membersCount}`
+`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+
+╭─「 *NUEVO MIEMBRO* 」─╮
+│ ✨ *${userTag}* se unió
+│ 👥 *Grupo:* ${groupName}
+│ 📊 *Miembro N°:* ${membersCount}
+╰─────────────
+> *Bienvenida al grupo* 💌`
         break
 
       case WAMessageStubType.GROUP_PARTICIPANT_LEAVE:
         audio = chat.audiobye
         txt = chat.customBye? chat.customBye.replace(/@user/gi, userTag).replace(/@group/gi, groupName) :
-`🐉 𓆩 𝗦𝗘 𝗙𝗨𝗘 𓆪 🐉\n\n🏃‍♂️ *${userTag}* abandonó *${groupName}*\n📉 *Quedamos:* ${membersCount}`
+`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+
+╭─「 *SE FUE* 」─╮
+│ 👋 *${userTag}* salió
+│ 👥 *Grupo:* ${groupName}
+│ 📉 *Quedamos:* ${membersCount}
+╰─────────────
+> *Esperamos verte pronto* ✨`
         break
 
       case WAMessageStubType.GROUP_PARTICIPANT_REMOVE:
         audio = chat.audiokick
         txt = chat.customKick? chat.customKick.replace(/@user/gi, userTag).replace(/@group/gi, groupName) :
-`🐉 𓆩 𝗘𝗫𝗣𝗨𝗟𝗦𝗔𝗗𝗢 𓆪 🐉\n\n⚡ *${userTag}* fue eliminado de *${groupName}*`
+`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+
+╭─「 *EXPULSADO* 」─╮
+│ ⚠️ *${userTag}* fue eliminado
+│ 👥 *Grupo:* ${groupName}
+╰─────────────
+> *Decisión de la administración* 💌`
         break
     }
 
