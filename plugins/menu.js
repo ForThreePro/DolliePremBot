@@ -2,7 +2,7 @@ import os from 'os'
 import { performance } from 'perf_hooks'
 
 let handler = async (m, { conn, usedPrefix }) => {
-  let loadMsg = await conn.reply(m.chat, `𝐃𝐎𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n⏳ *Cargando menú...*`, m)
+  let loadMsg = await conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n⏳ *Cargando menú...*`, m)
 
   let name = await conn.getName(m.sender)
   let uptime = process.uptime() * 1000
@@ -52,7 +52,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     otros: { icon: '✨', name: 'EXTRAS' } // <- CAMBIO COQUETA
   }
 
-  let menu = `╭─🎀─ *『 𝐃𝐎𝐋𝐈𝐄 𝐁𝐎𝐓*─🎀─╮
+  let menu = `╭─🎀─ *『 𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓*─🎀─╮
 │ ✨ *HOLA* @${m.sender.split('@')[0]}💞 💫
 │
 │ 🎀 *Prefijo:* [ ${usedPrefix} ]
@@ -79,16 +79,16 @@ let handler = async (m, { conn, usedPrefix }) => {
   }
 
   menu += `╭────────────────╮
-│ 🎀 *BOT:* 𝐃𝐎𝐋𝐈𝐄 𝐁𝐎𝐓
-│ 🌸 *Creador:* 𝐃𝐨𝐥𝐢𝐞 𝐭𝐞𝐚𝐦👑
+│ 🎀 *BOT:* 𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓
+│ 🌸 *Creador:* 𝐃𝐨𝐥𝐥𝐢𝐞 𝐭𝐞𝐚𝐦👑
 │ ✨ *Versión:* 3.0.0 Premium Edition
 │
-│ > *“𝐃𝐎𝐋𝐈𝐄 𝐁𝐎𝐓 al servicio del chat”* 💝
+│ > *“𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓 al servicio del chat”* 💝
 ╰────────────────╯`
 
   await conn.sendMessage(m.chat, { delete: loadMsg.key })
   await conn.sendMessage(m.chat, {
-    image: { url: 'https://files.evogb.win/VTW5WO.jpg' },
+    image: { url: 'https://files.evogb.win/fw2NBP.jpg' },
     caption: menu,
     mentions: [m.sender]
   }, { quoted: m })
