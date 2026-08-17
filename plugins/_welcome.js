@@ -54,7 +54,7 @@ handler.before = async function (m, { conn, groupMetadata }) {
     try {
       pp = await conn.profilePictureUrl(userJid, 'image')
     } catch {
-      pp = 'https://files.evogb.win/VTW5WO.jpg' // TU LINK DE FALLBACK
+      pp = 'https://files.evogb.win/fw2NBP.jpg' // TU LINK DE FALLBACK
     }
 
     const userTag = `@${userJid.split('@')[0]}`
