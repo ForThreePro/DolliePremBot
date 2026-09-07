@@ -2,16 +2,12 @@ import os from 'os'
 import { performance } from 'perf_hooks'
 
 let handler = async (m, { conn, usedPrefix }) => {
-  let loadMsg = await conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n⏳ *Cargando menú...*`, m)
+  let loadMsg = await conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓 🩰\n\n⏳ *Cargando menú...*`, m)
 
-  let name = await conn.getName(m.sender)
   let uptime = process.uptime() * 1000
   let _uptime = clockString(uptime)
   let totalreg = Object.keys(global.db.data.users).length
   let totalcmd = Object.values(global.plugins).filter(p => p.help &&!p.disabled).length
-  let start = performance.now()
-  let end = performance.now()
-  let ping = (end - start).toFixed(2)
 
   let fecha = new Date().toLocaleDateString('es-PE', {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
@@ -31,43 +27,35 @@ let handler = async (m, { conn, usedPrefix }) => {
     else groups[category].push(plugin.help)
   }
 
-  // DISEÑO NUEVO COQUETO
+  // DISEÑO DOLLS ORIGINAL
   const catDesign = {
-    config: { icon: '🎀', name: 'CONFIG' },
-    fun: { icon: '🎠', name: 'FUN' },
-    love: { icon: '💗', name: 'LOVE' },
-    scanner: { icon: '🌸', name: 'SCANNER' },
-    tools: { icon: '🌸', name: 'TOOLS' },
-    ff: { icon: '🛩️', name: 'FREE FIRE' },
-    search: { icon: '🗽', name: 'SEARCH' },
-    download: { icon: '🩰', name: 'MISC' },
-    group: { icon: '🛍️', name: 'GRUPOS' },
-    admin: { icon: '🎐', name: 'MISC' },
-    wel: { icon: '⭐', name: 'GROUP' },
-    ia: { icon: '🪩', name: 'MISC' },
-    main: { icon: '🎈', name: 'MAIN' },
-    info: { icon: '🌼', name: 'INFOR' },
+    fun: { icon: '🦩', name: 'FUN' },
     owner: { icon: '💎', name: 'OWNER' },
-    sticker: { icon: '🪅', name: 'STIKERS' },
-    serbot: { icon: '🤍', name: 'MISC' },
-    otros: { icon: '🪞', name: 'MISC' }
+    group: { icon: '🛍️', name: 'GRUPOS' },
+    admin: { icon: '🎡', name: 'GRUPOS' },
+    config: { icon: '🎀', name: 'CONFIG' },
+    downloader: { icon: '🪩', name: 'DESCARGAS' },
+    tools: { icon: '🪷', name: 'TOOLS' },
+    search: { icon: '🌄', name: 'SEARCH' },
+    diversión: { icon: '🧋', name: 'DIVERSIÓN' },
+    ff: { icon: '🌟', name: 'FREE FIRE' },
+    ia: { icon: '🩰', name: 'INTELIGENCIA ARTIFICIAL' },
+    main: { icon: '🪞', name: 'MAIN' },
+    info: { icon: '🌷', name: 'INFO' },
+    sticker: { icon: '🎐', name: 'STIKERS' },
+    ai: { icon: '👘', name: 'AI' },
+    otros: { icon: '🤍', name: 'MISC' }
   }
 
-  let menu = `╭── \`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓\`──╮
-│ 💎 *HOLA* @${m.sender.split('@')[0]}
-│
-│ 🎀 *Prefijo:* [ ${usedPrefix} ]
-│ ⏰ *Activo:* ${_uptime}
-│
-├─❒ *ESTADÍSTICAS* ❒
-│ 📊 *Comandos:* ${totalcmd}
-│ 👥 *Usuarios:* ${totalreg}
-│
-├─❒ *FECHA Y HORA* ❒
-│ 📅 *Día:* ${fecha[0].trim()}
-│ 📆 *Fecha:*${fecha[1].trim()}
-│ 🕐 *Hora:* ${hora}
- ╰───୨୧────────╯
+  let menu = `(🌷)" _𝐌𝐄𝐍𝐔́ 𝐃𝐎𝐋𝐋𝐈𝐄_. 🩰
+
+¡𝐃𝐄𝐒𝐂𝐔𝐁𝐑𝐄 𝐈𝐍𝐂𝐑𝐄𝐈́𝐁𝐋𝐄𝐒 𝐂𝐎𝐌𝐀𝐍𝐃𝐎𝐒!!
+
+(🪞).¡¡ *𝙒 𝙀 𝙇 𝘾 𝙊 𝙈 𝙀*!!
+(🌷). @${m.sender.split('@')[0]}
+
+> \`\` ${fecha[0].trim()}, ${fecha[1].trim()}│ Hora: ${hora} \`\`
+
 `
 
   for (let category in groups) {
@@ -79,17 +67,16 @@ let handler = async (m, { conn, usedPrefix }) => {
     menu += `╰─────── ୨୧ ────╯\n\n`
   }
 
-  menu += `╭────────────────╮
-│ 🎀 *BOT:* 𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓
-│ 🌸 *Creador:* 𝐃𝐨𝐥𝐥𝐢𝐞 𝐭𝐞𝐚𝐦👑
-│ ✨ *Versión:* 3.0.0 Premium Edition
-│
-│ > 𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓 al servicio del chat 🎀
-╰────────────────╯`
+  menu += `───────୨୧──────
+ 🪞 *BOT:* 𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓
+ 🌸 *Creador:* 𝐃𝐨𝐥𝐥𝐢𝐞 𝐭𝐞𝐚𝐦🌼
+ 🦩 *Versión:* 3.0.0 Premium Edition
+
+> 𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓 al servicio del chat`
 
   await conn.sendMessage(m.chat, { delete: loadMsg.key })
   await conn.sendMessage(m.chat, {
-    image: { url: 'https://files.evogb.win/fw2NBP.jpg' },
+    image: { url: 'https://files.evogb.win/fw2NBP.jpg' }, // pon tu logo de dollie aquí
     caption: menu,
     mentions: [m.sender]
   }, { quoted: m })
