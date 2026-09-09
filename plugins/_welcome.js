@@ -1,35 +1,19 @@
 import { WAMessageStubType } from '@whiskeysockets/baileys'
+import fetch from 'node-fetch'
 
 const handler = async (m, { conn, args, isAdmin, isOwner }) => {
-  if (!isAdmin &&!isOwner) return conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> ❌ *Solo admins pueden usar este comando*`, m)
+  if (!isAdmin &&!isOwner) return conn.reply(m.chat, `🩰 𓆩 ***𝗗𝗢𝗟𝗟𝗜𝗘 𝗕𝗢𝗧*** 𓆪 🩰\n\n💖 *Solo admins pueden usar este comando*`, m)
   let chat = global.db.data.chats[m.chat]
   if (!chat) global.db.data.chats[m.chat] = {}
 
   if (/on/i.test(args[0])) {
     chat.bienvenida = true
-    await conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
-
-╭─「 *BIENVENIDA* 」─╮
-│ 🟢 *Estado:* Activada
-│ 🎵 *Audios:* Activados
-╰─────────────
-> *Ahora saludaré a los nuevos* 💌`, m)
+    await conn.reply(m.chat, `🩰 𓆩 ***𝗕𝗜𝗘𝗡𝗩𝗘𝗡𝗜𝗗𝗔*** 𓆪 🩰\n\n🟢 *Activada con audios*`, m)
   } else if (/off/i.test(args[0])) {
     chat.bienvenida = false
-    await conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
-
-╭─「 *BIENVENIDA* 」─╮
-│ 🔴 *Estado:* Desactivada
-╰─────────────
-> *No enviaré mensajes de entrada/salida* ✨`, m)
+    await conn.reply(m.chat, `🩰 𓆩 ***𝗕𝗜𝗘𝗡𝗩𝗘𝗡𝗜𝗗𝗔*** 𓆪 🩰\n\n🔴 *Desactivada*`, m)
   } else {
-    await conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
-
-╭─「 *BIENVENIDA* 」─╮
-│ 🪄 *Uso:* ${m.prefix}bienvenida on
-│ 🪄 *Uso:* ${m.prefix}bienvenida off
-╰─────────────
-> *Activa o desactiva los mensajes* 💌`, m)
+    await conn.reply(m.chat, `🩰 𓆩 ***𝗗𝗢𝗟𝗟𝗜𝗘 𝗕𝗢𝗧*** 𓆪 🩰\n\n📌 *Uso:* ${m.prefix}bienvenida on/off`, m)
   }
 }
 
@@ -40,87 +24,73 @@ handler.group = true
 handler.admin = true
 
 handler.before = async function (m, { conn, groupMetadata }) {
+  if (!m.messageStubType ||!m.isGroup) return!0
+  const chat = global.db?.data?.chats?.[m.chat]
+  if (!chat ||!chat.bienvenida) return!0
+
+  const userJid = m.messageStubParameters?.[0] || m.participant
+  if (!userJid) return!0
+
+  const DEFAULT_IMG = 'https://files.evogb.win/fw2NBP.jpg' // TU FOTO DOLLIE
+  let imgBuffer = null
+
+  // PASO 1: Intentar obtener foto del usuario
   try {
-    if (!m.messageStubType ||!m.isGroup) return!0
-    const chat = global.db?.data?.chats?.[m.chat]
-    if (!chat ||!chat.bienvenida) return!0
-
-    const userJid = m.messageStubParameters?.[0] || m.participant
-    if (!userJid) return!0
-
-    // 1. PRIMERO FOTO DEL USUARIO
-    // 2. SI NO TIENE, USA LINK
-    let pp
+    let userPP = await conn.profilePictureUrl(userJid, 'image')
+    let res = await fetch(userPP)
+    imgBuffer = await res.buffer()
+  } catch {
+    // PASO 2: Si falla, usar tu foto dollie default
     try {
-      pp = await conn.profilePictureUrl(userJid, 'image')
+      let res = await fetch(DEFAULT_IMG)
+      imgBuffer = await res.buffer()
     } catch {
-      pp = 'https://files.evogb.win/fw2NBP.jpg' // TU LINK DE FALLBACK
+      imgBuffer = null
+    }
+  }
+
+  const userTag = `@${userJid.split('@')[0]}`
+  const groupName = groupMetadata.subject
+  const groupDesc = groupMetadata.desc || 'Sin descripción'
+  const membersCount = groupMetadata.participants.length
+
+  let txt = '', audio = null
+
+  switch (m.messageStubType) {
+    case WAMessageStubType.GROUP_PARTICIPANT_ADD:
+      audio = chat.audiowelcome
+      txt = chat.customWelcome? chat.customWelcome.replace(/@user/gi, userTag).replace(/@group/gi, groupName).replace(/@desc/gi, groupDesc) :
+`🩰 𓆩 ***𝗡𝗨𝗘𝗩𝗔 𝗗𝗢𝗟𝗟𝗜𝗘*** 𓆪 🩰\n\n💖 *${userTag}* llegó a *${groupName}*\n✨ *Somos:* ${membersCount} dollies`
+      break
+
+    case WAMessageStubType.GROUP_PARTICIPANT_LEAVE:
+      audio = chat.audiobye
+      txt = chat.customBye? chat.customBye.replace(/@user/gi, userTag).replace(/@group/gi, groupName) :
+`🩰 𓆩 ***𝗦𝗘 𝗙𝗨𝗘*** 𓆪 🩰\n\n🥺 *${userTag}* salió de *${groupName}*\n💔 *Quedamos:* ${membersCount}`
+      break
+
+    case WAMessageStubType.GROUP_PARTICIPANT_REMOVE:
+      audio = chat.audiokick
+      txt = chat.customKick? chat.customKick.replace(/@user/gi, userTag).replace(/@group/gi, groupName) :
+`🩰 𓆩 ***𝗘𝗫𝗣𝗨𝗟𝗦𝗔𝗗𝗔*** 𓆪 🩰\n\n😢 *${userTag}* fue removida de *${groupName}*`
+      break
+  }
+
+  if (txt) {
+    // PASO 3: Mandar SIEMPRE con imagen si se pudo descargar
+    if (imgBuffer) {
+      await conn.sendMessage(m.chat, { image: imgBuffer, caption: txt, mentions: [userJid] })
+    } else {
+      await conn.sendMessage(m.chat, { text: txt, mentions: [userJid] })
     }
 
-    const userTag = `@${userJid.split('@')[0]}`
-    const groupName = groupMetadata.subject
-    const groupDesc = groupMetadata.desc || 'Sin descripción'
-    const membersCount = groupMetadata.participants.length
-
-    let txt = '', audio = null
-
-    switch (m.messageStubType) {
-      case WAMessageStubType.GROUP_PARTICIPANT_ADD:
-        audio = chat.audiowelcome
-        txt = chat.customWelcome? chat.customWelcome.replace(/@user/gi, userTag).replace(/@group/gi, groupName).replace(/@desc/gi, groupDesc) :
-`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
-
-╭─「 *NUEVO MIEMBRO* 」─╮
-│ ✨ *${userTag}* se unió
-│ 👥 *Grupo:* ${groupName}
-│ 📊 *Miembro N°:* ${membersCount}
-╰─────────────
-> *Bienvenida al grupo* 💌`
-        break
-
-      case WAMessageStubType.GROUP_PARTICIPANT_LEAVE:
-        audio = chat.audiobye
-        txt = chat.customBye? chat.customBye.replace(/@user/gi, userTag).replace(/@group/gi, groupName) :
-`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
-
-╭─「 *SE FUE* 」─╮
-│ 👋 *${userTag}* salió
-│ 👥 *Grupo:* ${groupName}
-│ 📉 *Quedamos:* ${membersCount}
-╰─────────────
-> *Esperamos verte pronto* ✨`
-        break
-
-      case WAMessageStubType.GROUP_PARTICIPANT_REMOVE:
-        audio = chat.audiokick
-        txt = chat.customKick? chat.customKick.replace(/@user/gi, userTag).replace(/@group/gi, groupName) :
-`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
-
-╭─「 *EXPULSADO* 」─╮
-│ ⚠️ *${userTag}* fue eliminado
-│ 👥 *Grupo:* ${groupName}
-╰─────────────
-> *Decisión de la administración* 💌`
-        break
-    }
-
-    if (txt) {
-      await conn.sendMessage(m.chat, {
-        image: { url: pp }, // ya siempre es url
-        caption: txt,
-        mentions: [userJid]
-      })
-
-      if (audio) {
-        if (Buffer.isBuffer(audio)) {
-          await conn.sendMessage(m.chat, { audio: audio, mimetype: 'audio/mpeg', ptt: false }, { quoted: m })
-        } else if (typeof audio === 'string' && audio.startsWith('http')) {
-          await conn.sendMessage(m.chat, { audio: { url: audio }, mimetype: 'audio/mpeg', ptt: false }, { quoted: m })
-        }
+    if (audio) {
+      if (Buffer.isBuffer(audio)) {
+        await conn.sendMessage(m.chat, { audio: audio, mimetype: 'audio/mpeg', ptt: false })
+      } else if (typeof audio === 'string' && audio.startsWith('http')) {
+        await conn.sendMessage(m.chat, { audio: { url: audio }, mimetype: 'audio/mpeg', ptt: false })
       }
     }
-  } catch (e) {
-    console.error("Error en Bienvenida Audio:", e)
   }
   return!0
 }
