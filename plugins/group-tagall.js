@@ -79,7 +79,7 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
 > *Mencionados por:* @${m.sender.split('@')[0]} 💌`
 
     // Imagen a puro link - sin catalogo.png
-    const imageUrl = 'https://files.evogb.win/fw2NBP.jpg'
+    const imageUrl = 'https://files.evogb.win/n4InsB.jpg'
 
     await conn.sendMessage(m.chat, {
       image: { url: imageUrl },
