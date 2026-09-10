@@ -76,7 +76,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 
   await conn.sendMessage(m.chat, { delete: loadMsg.key })
   await conn.sendMessage(m.chat, {
-    image: { url: 'https://files.evogb.win/ok6P9F.jpg' }, // pon tu logo de dollie aquí
+    image: { url: 'https://files.evogb.win/n4InsB.jpg' }, // pon tu logo de dollie aquí
     caption: menu,
     mentions: [m.sender]
   }, { quoted: m })
