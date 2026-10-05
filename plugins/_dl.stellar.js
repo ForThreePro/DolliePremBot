@@ -19,23 +19,23 @@ const getBuffer = async (url) => {
 
 let handler = async (m, { conn, text, command }) => {
     if (!text) {
-        let menuUso = `𐔌 ꒱ ***.${command}*** 𐔌 ꒱ 🎵
+        let menuUso = 
+`‧˚꒰👛୭ *_𝐏 𝐋 𝐀 𝐘 𝟏_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`DESCARGAS\`\` —˙𖦹.📥꒷
+╭───DESCARGAS꒰🍯꒱───╮
+‧˚꒰🍯୭ 📝 Descarga audio de YT y TikTok
+‧˚꒰🍯୭ 🎵 Envía en MP3 lindo
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-── *📝 DESCRIPCIÓN* ╏
-🎵 ➛ Descarga audio de YouTube y TikTok
-🎵 ➛ Envía el audio en MP3
+╭───USO ꒰🍨꒱────╮
+꒰🍨꒱ .${command} <nombre>
+꒰🍨꒱ .ttmp3 <link de tiktok>
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-── *📖 USO* ╏
-1️⃣ ➛.*play1* <nombre de canción>
-2️⃣ ➛.*ttmp3* <link de tiktok>
-
-── *💡 EJEMPLOS* ╏
-➛.*play1* blinding lights
-➛.*ttmp3* https://www.tiktok.com/@user/video/123
-
-━━━━━━━━━━━`
+╭───EJEMPLOS ꒰🌼꒱────╮
+꒰🌼꒱ .play1 blinding lights
+꒰🌼꒱ .ttmp3 https://www.tiktok.com/@user/video/123
+╰─────── ݁ ˖Ი𐑼⋆────╯`
         return conn.sendMessage(m.chat, { text: menuUso }, { quoted: m })
     }
 
@@ -43,16 +43,14 @@ let handler = async (m, { conn, text, command }) => {
     try {
         // ===== YOUTUBE =====
         if (command === 'play1') {
-            await m.reply(`𐔌 ꒱ ***.play1*** 𐔌 ꒱ ⏳
+            await m.reply(
+`‧˚꒰👛୭ *_𝐏 𝐋 𝐀 𝐘 𝟏_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`BUSCANDO\`\` —˙𖦹.🔍꒷
-
-── *📊 ESTADO* ╏
-🔍 ➛ Buscando en YouTube...
-📥 ➛ Obteniendo audio...
-⬇️ ➛ Preparando descarga...
-
-━━━━━━━━━━━`)
+╭───BUSCANDO ꒰🔍꒱────╮
+꒰🌼꒱ Buscando en YouTube...
+꒰🍧꒱ Obteniendo audio...
+꒰🍨꒱ Preparando descarga...
+╰─────── ݁ ˖Ი𐑼⋆────╯`)
 
             const searchResult = await ytsearch(text)
             if (!searchResult.videos ||!searchResult.videos.length) throw new Error("No se encontró la canción.")
@@ -64,21 +62,17 @@ let handler = async (m, { conn, text, command }) => {
 
             await conn.sendMessage(m.chat, {
                 image: thumbBuffer,
-                caption: `𐔌 ꒱ ***.play1*** 𐔌 ꒱ ✅
+                caption:
+`‧˚꒰👛୭ *_𝐄 𝐍 𝐂 𝐎 𝐍 𝐓 𝐑 𝐀 𝐃 𝐎_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ENCONTRADO\`\` —˙𖦹.🎵꒷
+╭───INFO ꒰🎵꒱────╮
+‧˚꒰🎵୭ 📌 Título: ${title}
+‧˚꒰🎵୭ 👤 Canal: ${canal}
+‧˚꒰🎵୭ ⏱️ Duración: ${duration || '0:00'}
+‧˚꒰🎵୭ 👁️ Vistas: ${vistas}
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-── *📊 INFORMACIÓN* ╏
-📌 ➛ Título: *${title}*
-👤 ➛ Canal: *${canal}*
-⏱️ ➛ Duración: *${duration || '0:00'}*
-👁️ ➛ Vistas: *${vistas}*
-🔗 ➛ Link: ${url}
-
-── *📥 DESCARGA* ╏
-⬇️ ➛ Enviando audio...
-
-━━━━━━━━━━━`
+꒰🍨꒱ Enviando audio preciosa ✨`
             }, { quoted: m })
 
             const dlEndpoint = `${api.url}/dl/ytmp3?url=${encodeURIComponent(url)}&key=${api.key}`
@@ -93,16 +87,14 @@ let handler = async (m, { conn, text, command }) => {
 
         // ===== TIKTOK =====
         if (command === 'ttmp3' || command === 'tomp3' || command === 'tt') {
-            await m.reply(`𐔌 ꒱ ***.ttmp3*** 𐔌 ꒱ ⏳
+            await m.reply(
+`‧˚꒰👛୭ *_𝐓 𝐓 𝐌 𝐏 𝟑_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`PROCESANDO\`\` —˙𖦹.📱꒷
-
-── *📊 ESTADO* ╏
-🔍 ➛ Analizando link de TikTok...
-📥 ➛ Extrayendo audio...
-⬇️ ➛ Preparando descarga...
-
-━━━━━━━━━━━`)
+╭───PROCESANDO ꒰📱꒱────╮
+꒰🌼꒱ Analizando link de TikTok...
+꒰🍧꒱ Extrayendo audio...
+꒰🍨꒱ Preparando descarga...
+╰─────── ݁ ˖Ი𐑼⋆────╯`)
 
             const apiUrl = `${api.url}/dl/tiktokmp3?url=${encodeURIComponent(text)}&key=${api.key}`
             const res = await fetch(apiUrl).then(r => r.json())
@@ -114,19 +106,15 @@ let handler = async (m, { conn, text, command }) => {
             if (!dl) throw new Error('No se pudo descargar. Link mal o privado')
 
             const audioBuffer = await getBuffer(dl)
-            const caption = `𐔌 ꒱ ***.ttmp3*** 𐔌 ꒱ ✅
+            const caption =
+`‧˚꒰👛୭ *_𝐄 𝐍 𝐂 𝐎 𝐍 𝐓 𝐑 𝐀 𝐃 𝐎_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ENCONTRADO\`\` —˙𖦹.📱꒷
+╭───INFO ꒰📱꒱────╮
+‧˚꒰📱୭ 📌 Título: ${title}
+‧˚꒰📱୭ 👤 Autor: ${author}
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-── *📊 INFORMACIÓN* ╏
-📌 ➛ Título: *${title}*
-👤 ➛ Autor: *${author}*
-🔗 ➛ Link: ${text}
-
-── *📥 DESCARGA* ╏
-⬇️ ➛ Enviando audio...
-
-━━━━━━━━━━━`
+꒰🍨꒱ Enviando audio preciosa ✨`
 
             if (thumb) {
                 const thumbBuffer = await getBuffer(thumb)
@@ -142,18 +130,17 @@ let handler = async (m, { conn, text, command }) => {
         await react(conn, m, '✅')
     } catch (e) {
         await react(conn, m, '❌')
-        let menuErr = `𐔌 ꒱ ***.${command}*** 𐔌 ꒱ ⚠️
+        let menuErr =
+`‧˚꒰👛୭ *_𝐄 𝐑 𝐑 𝐎 𝐑_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` —˙𖦹.❌꒷
+╭───ERROR ꒰❌꒱────╮
+꒰🍧꒱ ${e.message}
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-── *📝 DESCRIPCIÓN* ╏
-❌ ➛ ${e.message}
-
-── *💡 SOLUCIÓN* ╏
-🔧 ➛ Verifica el nombre o link
-🔧 ➛ El video debe ser público
-
-━━━━━━━━━━━`
+╭───SOLUCIÓN ꒰🌼꒱────╮
+꒰🌼꒱ Verifica el nombre o link
+꒰🌼꒱ El video debe ser público
+╰─────── ݁ ˖Ი𐑼⋆────╯`
         return conn.sendMessage(m.chat, { text: menuErr }, { quoted: m })
     }
 }
