@@ -45,9 +45,23 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     const q = m.quoted || m
     const mime = (q.msg || q).mimetype || ''
 
-    if (!mime) return m.reply(`Responde a una imagen con: ${usedPrefix + command}`)
+    if (!mime) return m.reply(
+`‧˚꒰👛୭ *_𝐑 𝐄 𝐌 𝐎 𝐕 𝐄 𝐁 𝐆_*
+
+꒰🍧꒱ ¡𝐎𝐨𝐩𝐬! 𝐍𝐨 𝐯𝐞𝐨 𝐧𝐚𝐝𝐚
+꒰🍨꒱.*꒰ Responde a una imagen linda ୭*
+
+> ꒰🌼꒱ Usa: ${usedPrefix + command} + imagen`
+    )
     if (!/image\/(jpe?g|png)/.test(mime)) {
-      return m.reply(`Solo se acepta imagen JPG/PNG`)
+      return m.reply(
+`‧˚꒰👛୭ *_𝐑 𝐄 𝐌 𝐎 𝐕 𝐄 𝐁 𝐆_*
+
+꒰🍧꒱ ¡𝐄𝐫𝐫𝐨𝐫𝐜𝐢𝐭𝐨!
+꒰🍨꒱ Solo acepto JPG / PNG preciosa
+
+╰─────── ݁ ˖Ი𐑼⋆────╯`
+      )
     }
 
     try {
@@ -63,7 +77,16 @@ let handler = async (m, { conn, usedPrefix, command }) => {
       // Enviar imagen PNG sin fondo
       await conn.sendMessage(m.chat, {
         image: finalBuffer,
-        caption: `*Resultado:*\n- Calidad: HD 2x\n- Fondo: Eliminado\n- Key: proyectsV2`
+        caption:
+`‧˚꒰👛୭ *_𝐑 𝐄 𝐒 𝐔 𝐋 𝐓 𝐀 𝐃 𝐎_*
+
+╭───TOOLS ꒰🌼꒱────╮
+꒰🌼꒱ Calidad: HD 2x
+꒰🌼꒱ Fondo: Eliminado ✨
+꒰🌼꒱ Key: proyectsV2
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Listo mi reina 👛`
       }, { quoted: m })
 
       // Enviar también como documento
@@ -71,14 +94,22 @@ let handler = async (m, { conn, usedPrefix, command }) => {
         document: finalBuffer,
         fileName: 'nobg.png',
         mimetype: 'image/png',
-        caption: `Documento PNG Sin Fondo`
+        caption:
+`‧˚꒰🍨꒱ Documento PNG sin fondo`
       }, { quoted: m })
 
       await m.react('✅')
 
     } catch (err) {
       await m.react('❌')
-      await m.reply(`Error: ${err.message || err}`)
+      await m.reply(
+`‧˚꒰👛୭ *_𝐄 𝐑 𝐑 𝐎 𝐑_*
+
+꒰🍧꒱ Ups! Algo salió mal
+꒰🍨꒱ Error: ${err.message || err}
+
+╰─────── ݁ ˖Ი𐑼⋆────╯`
+      )
     }
 }
 
