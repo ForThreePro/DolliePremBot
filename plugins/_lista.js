@@ -28,32 +28,31 @@ let handler = async (m, { conn, text }) => {
     //.verlista = MOSTRAR TODOS LOS DÍAS LUNES A SÁBADO
     if (m.message?.extendedTextMessage?.text?.includes('verlista') || m.text?.includes('verlista')) {
         await react('📋')
-        let tabla = `𐔌 ꒱ ***LISTA SEMANAL*** 𐔌 ꒱ 📋
+        let tabla =
+`‧˚꒰👛୭ *_𝐋 𝐈 𝐒 𝐓 𝐀 𝐒𝐄𝐌𝐀𝐍𝐀𝐋_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`REGISTROS\`\` —˙𖦹.📅꒷
-
-── *📊 INFORMACIÓN* ╏
-📅 ➛ Periodo: *Lunes a Sábado*
-🕒 ➛ Actualizado: *${fecha}*
-
-━━━━━━━━━━━
+╭───REGISTROS ꒰📅꒱────╮
+꒰🌼꒱ Periodo: Lunes a Sábado
+꒰🍨꒱ Actualizado: ${fecha}
+╰─────── ݁ ˖Ი𐑼⋆────╯
 `
 
         diasSemana.forEach(dia => {
             let anotadosDelDia = data.filter(v => v.dia.toLowerCase().includes(dia))
-            tabla += `── *${dia.toUpperCase()}* ╏\n`
+            tabla += `\n╭───${dia.toUpperCase()} ꒰🍧꒱────╮\n`
 
             if (anotadosDelDia.length === 0) {
-                tabla += `📭 ➛ Sin anotados\n\n`
+                tabla += `꒰🍨꒱ Sin anotados aún\n╰─────── ݁ ˖Ი𐑼⋆────╯\n`
             } else {
                 anotadosDelDia.forEach((v, i) => {
-                    tabla += `${i+1}️⃣ ➛ *${v.nombre}* [${v.rol}]\n`
-                    tabla += `   📱 ➛ ${v.numero}\n`
-                    tabla += `   📅 ➛ ${v.dia}\n\n`
+                    tabla += `‧˚꒰🌼୭ ${i+1}. ${v.nombre} [${v.rol}]\n`
+                    tabla += `꒰📱꒱ ${v.numero}\n`
+                    tabla += `꒰📅꒱ ${v.dia}\n\n`
                 })
+                tabla += `╰─────── ݁ ˖Ი𐑼⋆────╯\n`
             }
         })
-        tabla += `━━━━━━━━━━━\n📦 ➛ Total: *${data.length}* registro${data.length !== 1 ? 's' : ''}`
+        tabla += `\n‧˚꒰👛୭ Total: ${data.length} registros ✨`
         return conn.sendMessage(m.chat, { text: tabla.trim() }, { quoted: m })
     }
 
@@ -61,63 +60,57 @@ let handler = async (m, { conn, text }) => {
     if (m.message?.extendedTextMessage?.text?.includes('lista') || m.text?.includes('lista')) {
         if (!diasSemana.includes(diaSemana)) {
             await react('⛔')
-            let fueraHorario = `𐔌 ꒱ ***LISTA*** 𐔌 ꒱ ⛔
+            let fueraHorario =
+`‧˚꒰👛୭ *_𝐅𝐔𝐄𝐑𝐀 𝐃𝐄 𝐇𝐎𝐑𝐀𝐑𝐈𝐎_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`FUERA DE HORARIO\`\` —˙𖦹.📅꒷
-
-── *📝 AVISO* ╏
-❌ ➛ Solo se puede anotar de
-❌ ➛ *Lunes a Sábado*
-
-━━━━━━━━━━━`
+╭───AVISO ꒰⛔꒱────╮
+꒰🍧꒱ Solo se puede anotar de
+꒰🌼꒱ Lunes a Sábado preciosa
+╰─────── ݁ ˖Ი𐑼⋆────╯`
             return conn.sendMessage(m.chat, { text: fueraHorario }, { quoted: m })
         }
 
         if (!text) {
             await react('❌')
-            let formato = `𐔌 ꒱ ***LISTA*** 𐔌 ꒱ 📝
+            let formato =
+`‧˚꒰👛୭ *_𝐋 𝐈 𝐒 𝐓 𝐀_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`FORMATO\`\` —˙𖦹.📋꒷
+╭───FORMATO ꒰📝꒱────╮
+꒰🍨꒱ Envía: Nombre/Numero/Rol
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-── *📖 USO* ╏
-➛ Envía: Nombre/Numero/Rol
-
-── *💡 EJEMPLO* ╏
-➛ fetsy/618282/bot
-
-━━━━━━━━━━━`
+╭───EJEMPLO ꒰🌼꒱────╮
+꒰🌼꒱ fetsy/618282/bot
+╰─────── ݁ ˖Ი𐑼⋆────╯`
             return conn.sendMessage(m.chat, { text: formato }, { quoted: m })
         }
 
         let [nombre, numero, rol] = text.split('/').map(v => v.trim())
         if (!nombre ||!numero ||!rol) {
             await react('❌')
-            let faltan = `𐔌 ꒱ ***LISTA*** 𐔌 ꒱ ⚠️
+            let faltan =
+`‧˚꒰👛୭ *_𝐅𝐀𝐋𝐓𝐀𝐍 𝐃𝐀𝐓𝐎𝐒_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`FALTAN DATOS\`\` —˙𖦹.❌꒷
+╭───FORMATO ꒰🍧꒱────╮
+꒰🍨꒱ Nombre/Numero/Rol
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-── *📖 FORMATO* ╏
-➛ Nombre/Numero/Rol
-
-── *💡 EJEMPLO* ╏
-➛ fetsy/618282/bot
-
-━━━━━━━━━━━`
+╭───EJEMPLO ꒰🌼꒱────╮
+꒰🌼꒱ fetsy/618282/bot
+╰─────── ݁ ˖Ი𐑼⋆────╯`
             return conn.sendMessage(m.chat, { text: faltan }, { quoted: m })
         }
 
         let yaAnotado = data.find(v => v.numero === numero && v.dia === fecha)
         if (yaAnotado) {
             await react('⚠️')
-            let duplicado = `𐔌 ꒱ ***LISTA*** 𐔌 ꒱ ⚠️
+            let duplicado =
+`‧˚꒰👛୭ *_𝐘𝐀 𝐀𝐍𝐎𝐓𝐀𝐃𝐎_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`YA ANOTADO\`\` —˙𖦹.📋꒷
-
-── *📝 AVISO* ╏
-⚠️ ➛ ${nombre} ya fue anotado hoy
-📅 ➛ *${fecha}*
-
-━━━━━━━━━━━`
+╭───AVISO ꒰⚠️꒱────╮
+꒰🍧꒱ ${nombre} ya fue anotado hoy
+꒰🌼꒱ ${fecha}
+╰─────── ݁ ˖Ი𐑼⋆────╯`
             return conn.sendMessage(m.chat, { text: duplicado }, { quoted: m })
         }
 
@@ -125,17 +118,17 @@ let handler = async (m, { conn, text }) => {
         fs.writeFileSync(db, JSON.stringify(data, null, 2))
         await react('✅')
 
-        let ok = `𐔌 ꒱ ***LISTA*** 𐔌 ꒱ ✅
+        let ok =
+`‧˚꒰👛୭ *_𝐀 𝐍 𝐎 𝐓 𝐀 𝐃 𝐎_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ANOTADO\`\` —˙𖦹.📋꒷
+╭───DATOS ꒰📋꒱────╮
+‧˚꒰👧🏻୭ Nombre: ${nombre}
+‧˚꒰📱୭ Número: ${numero}
+‧˚꒰💼୭ Rol: ${rol}
+‧˚꒰📅୭ Día: ${fecha}
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-── *📊 DATOS* ╏
-👤 ➛ Nombre: *${nombre}*
-📱 ➛ Número: *${numero}*
-💼 ➛ Rol: *${rol}*
-📅 ➛ Día: *${fecha}*
-
-━━━━━━━━━━━`
+꒰🍨꒱ Anotado con éxito preciosa ✨`
         return conn.sendMessage(m.chat, { text: ok }, { quoted: m })
     }
 }
