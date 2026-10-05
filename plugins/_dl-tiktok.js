@@ -9,24 +9,47 @@ const react = async (conn, m, text) => {
 var handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args[0]) {
     return m.reply(
-`DESCARGADOR DE TIKTOK
+`‧˚꒰👛୭ *_𝐓 𝐈 𝐊 𝐓 𝐎 𝐊_*
 
-Uso: ${usedPrefix + command} <link de tiktok>
-Ejemplo: ${usedPrefix + command} https://vm.tiktok.com/ZMkcmTCa6/`
+¡𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐃𝐎𝐑 𝐕𝐈𝐑𝐀𝐋!
+
+╭───DESCARGAS꒰🍯꒱───╮
+꒰🍯꒱ Usa: ${usedPrefix + command} <link>
+꒰🍯꒱ Ej: ${usedPrefix + command} https://vm.tiktok.com/ZMkcmTCa6/
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Mándame tu link preciosa`
     )
   }
 
   const url = args[0]
   if (!url.match(/(https?:\/\/)?(www\.)?(vm\.|vt\.|www\.)?tiktok\.com\//)) {
-    return m.reply(`⚠️ El enlace no es válido de TikTok.`)
+    return m.reply(
+`‧˚꒰👛୭ *_𝐓 𝐈 𝐊 𝐓 𝐎 𝐊_*
+
+꒰🍧꒱ Link no válido mi reina
+꒰🍨꒱ Solo acepto links de TikTok
+
+╰─────── ݁ ˖Ი𐑼⋆────╯`
+    )
   }
 
   try {
     await react(conn, m, "⏳")
-    await m.reply('⏳ Procesando video...')
+    await m.reply(
+`‧˚꒰🍨୭ *_𝐓 𝐈 𝐊 𝐓 𝐎 𝐊_*
+
+꒰🌼꒱ Procesando tu videito...
+꒰🍧꒱ Espera un segundito ✨`
+    )
 
     const tiktokData = await tiktokdl(url)
-    if (!tiktokData?.data) return m.reply('❌ No se pudo obtener el video.')
+    if (!tiktokData?.data) return m.reply(
+`‧˚꒰👛୭ *_𝐄 𝐑 𝐑 𝐎 𝐑_*
+
+꒰🍧꒱ No se pudo obtener el video
+꒰🍨꒱ Intenta con otro link`
+    )
 
     const videoURL = tiktokData.data.play
     const title = tiktokData.data.title || 'Sin título'
@@ -51,21 +74,22 @@ Ejemplo: ${usedPrefix + command} https://vm.tiktok.com/ZMkcmTCa6/`
         message: {
           interactiveMessage: proto.Message.InteractiveMessage.fromObject({
             body: {
-              text: `╭─「 VIDEO DE TIKTOK 」
-│
-│ 📝 TÍTULO: ${title}
-│ 👤 AUTOR: @${author}
-│ ❤️ LIKES: ${likes}
-│ 💬 COMENTARIOS: ${comments}
-│
-╰───────────────────────`
+              text:
+`‧˚꒰👛୭ *_𝐓 𝐈 𝐊 𝐓 𝐎 𝐊 𝐕𝐈𝐃𝐄𝐎_*
+
+╭───INFO ꒰🩰꒱────╮
+‧˚꒰🩰୭ 📝 Título: ${title}
+‧˚꒰🩰୭ 👤 Autor: @${author}
+‧˚꒰🩰୭ ❤️ Likes: ${likes}
+‧˚꒰🩰୭ 💬 Comentarios: ${comments}
+╰─────── ݁ ˖Ი𐑼⋆────╯`
             },
-            footer: { text: 'Descarga sin marca de agua' },
+            footer: { text: '꒰🍧꒱ Descarga sin marca de agua ✨' },
             header: { hasMediaAttachment: true, videoMessage: media.videoMessage },
             nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
               buttons: [
-                { name: 'cta_copy', buttonParamsJson: JSON.stringify({ display_text: 'Copiar texto', copy_code: title }) },
-                { name: 'cta_url', buttonParamsJson: JSON.stringify({ display_text: 'Ver en TikTok', url: url }) }
+                { name: 'cta_copy', buttonParamsJson: JSON.stringify({ display_text: '꒰🍧꒱ Copiar texto', copy_code: title }) },
+                { name: 'cta_url', buttonParamsJson: JSON.stringify({ display_text: '꒰🍨꒱ Ver en TikTok', url: url }) }
               ]
             })
           })
@@ -78,7 +102,13 @@ Ejemplo: ${usedPrefix + command} https://vm.tiktok.com/ZMkcmTCa6/`
 
   } catch (error) {
     await react(conn, m, "❌")
-    m.reply(`❌ Error: ${error.message}`)
+    m.reply(
+`‧˚꒰👛୭ *_𝐄 𝐑 𝐑 𝐎 𝐑_*
+
+꒰🍧꒱ Ups! ${error.message}
+
+╰─────── ݁ ˖Ი𐑼⋆────╯`
+    )
   }
 }
 
