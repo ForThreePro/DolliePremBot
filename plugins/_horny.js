@@ -33,53 +33,64 @@ let handler = async (m, { conn, participants }) => {
         let apiUrl = `https://api.stellarwa.xyz/generate/horny?avatar=${encodeURIComponent(pp)}&key=${key}`
         try {
             await react('😏')
-            await m.reply(`𐔌 ꒱ ***HORNY*** 𐔌 ꒱ 😏
+            await m.reply(
+`‧˚꒰👛୭ *_𝐇 𝐎 𝐑 𝐍 𝐘_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`GENERANDO\`\` —˙𖦹.🔥꒷
-
-── *📊 ESTADO* ╏
-🖼️ ➛ Creando imagen...
-
-━━━━━━━━━━━`)
+╭───GENERANDO ꒰🔥꒱────╮
+꒰🌼꒱ Creando imagen coqueta...
+꒰🍨꒱ Para @${who.split('@')[0]} ✨
+╰─────── ݁ ˖Ი𐑼⋆────╯`
+            )
             let res = await fetch(apiUrl, { timeout: 20000 })
             let buffer = await res.buffer()
             await conn.sendMessage(m.chat, {
                 image: buffer,
-                caption: `𐔌 ꒱ ***HORNY*** 𐔌 ꒱ 🔥
+                caption:
+`‧˚꒰👛୭ *_𝐇 𝐎 𝐑 𝐍 𝐘_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`RESULTADO\`\` —˙𖦹.😏꒷
+╭───RESULTADO ꒰😏꒱────╮
+‧˚꒰😏୭ @${who.split('@')[0]} está así ahora mismo 🔥
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-── *📊 RESULTADO* ╏
-@${who.split('@')[0]} está así ahora mismo 😏🔥
-
-━━━━━━━━━━━`,
+꒰🍨꒱ Que traviesa 👛`,
                 mentions: [who]
             })
         } catch (e) {
             await react('❌')
-            m.reply(`𐔌 ꒱ ***HORNY*** 𐔌 ꒱ ⚠️\n\n❌ Error al generar la imagen`)
+            m.reply(
+`‧˚꒰👛୭ *_𝐇 𝐎 𝐑 𝐍 𝐘_*
+
+꒰🍧꒱ Error al generar mi reina`
+            )
         }
     }
 
     // ===== SHIP =====
     if (m.message?.extendedTextMessage?.text?.includes('ship') || m.text?.includes('ship')) {
-        if (!m.isGroup) return m.reply(`𐔌 ꒱ ***SHIP*** 𐔌 ꒱ ⚠️\n\n❌ Solo funciona en grupos`)
+        if (!m.isGroup) return m.reply(
+`‧˚꒰👛୭ *_𝐒 𝐇 𝐈 𝐏_*
+
+꒰🍧꒱ Solo funciona en grupos preciosa`
+        )
         let members = participants.map(u => u.id)
-        if (members.length < 2) return m.reply(`𐔌 ꒱ ***SHIP*** 𐔌 ꒱ ⚠️\n\n❌ Necesitan mínimo 2 personas`)
+        if (members.length < 2) return m.reply(
+`‧˚꒰👛୭ *_𝐒 𝐇 𝐈 𝐏_*
+
+꒰🍧꒱ Necesitan mínimo 2 personas`
+        )
         let user1, user2
         if (m.mentionedJid.length >= 2) { user1 = m.mentionedJid[0]; user2 = m.mentionedJid[1] }
         else { user1 = members[Math.floor(Math.random() * members.length)]; user2 = members[Math.floor(Math.random() * members.length)]; while(user1 === user2) user2 = members[Math.floor(Math.random() * members.length)] }
 
         await react('💘')
         await conn.sendMessage(m.chat, {
-            text: `𐔌 ꒱ ***SHIP*** 𐔌 ꒱ 💘
+            text:
+`‧˚꒰👛୭ *_𝐒 𝐇 𝐈 𝐏_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`CALCULANDO\`\` —˙𖦹.💖꒷
-
-── *📊 PAREJA* ╏
-@${user1.split('@')[0]} + @${user2.split('@')[0]}
-
-━━━━━━━━━━━`,
+╭───CALCULANDO ꒰💘꒱────╮
+꒰🌼꒱ @${user1.split('@')[0]} + @${user2.split('@')[0]}
+꒰🍨꒱ Viendo si hay química...
+╰─────── ݁ ˖Ი𐑼⋆────╯`,
             mentions: [user1, user2]
         })
         try {
@@ -90,22 +101,23 @@ let handler = async (m, { conn, participants }) => {
             let explicacion = porcentaje < 20? `Hay 0 química 😅` : porcentaje < 40? `Poca compatibilidad 💛` : porcentaje < 60? `Hay algo ahí ✨` : porcentaje < 80? `Buena conexión ❤️` : porcentaje < 100? `Compatibilidad altísima 💖` : `100% ALMAS GEMELAS 💍`
             await conn.sendMessage(m.chat, {
                 image: buffer,
-                caption: `𐔌 ꒱ ***SHIP*** 𐔌 ꒱ 💘
+                caption:
+`‧˚꒰👛୭ *_𝐒 𝐇 𝐈 𝐏 𝐑𝐄𝐒𝐔𝐋𝐓_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`RESULTADO\`\` —˙𖦹.💖꒷
-
-── *📊 COMPATIBILIDAD* ╏
-@${user1.split('@')[0]} + @${user2.split('@')[0]}
-
-💘 ➛ *${porcentaje}%*
-💌 ➛ ${explicacion}
-
-━━━━━━━━━━━`,
+╭───COMPATIBILIDAD ꒰💘꒱────╮
+‧˚꒰💘୭ @${user1.split('@')[0]} + @${user2.split('@')[0]}
+‧˚꒰💘୭ ${porcentaje}%
+‧˚꒰🍨୭ ${explicacion}
+╰─────── ݁ ˖Ი𐑼⋆────╯`,
                 mentions: [user1, user2]
             })
         } catch (e) {
             await react('❌')
-            m.reply(`𐔌 ꒱ ***SHIP*** 𐔌 ꒱ ⚠️\n\n❌ Error al generar la imagen`)
+            m.reply(
+`‧˚꒰👛୭ *_𝐒 𝐇 𝐈 𝐏_*
+
+꒰🍧꒱ Error al generar mi reina`
+            )
         }
     }
 
@@ -116,32 +128,32 @@ let handler = async (m, { conn, participants }) => {
         let createdTimestamp = Date.now()
         let apiUrl = `https://api.stellarwa.xyz/generate/security?avatar=${encodeURIComponent(pp)}&background=${encodeURIComponent(defaultBg)}&createdTimestamp=${createdTimestamp}&key=${key}`
         await react('🔍')
-        await m.reply(`𐔌 ꒱ ***SE BUSCA*** 𐔌 ꒱ 🚨
+        await m.reply(
+`‧˚꒰👛୭ *_𝐒 𝐄 𝐁𝐔𝐒𝐂𝐀_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`GENERANDO\`\` —˙𖦹.📢꒷
-
-── *📊 ESTADO* ╏
-🖼️ ➛ Creando cartel para @${who.split('@')[0]}...
-
-━━━━━━━━━━━`, { mentions: [who] })
+╭───GENERANDO ꒰🚨꒱────╮
+꒰🌼꒱ Creando cartel para @${who.split('@')[0]}...
+╰─────── ݁ ˖Ი𐑼⋆────╯`, { mentions: [who] })
         try {
             let res = await fetch(apiUrl, { timeout: 30000 }); let buffer = await res.buffer()
             await conn.sendMessage(m.chat, {
                 image: buffer,
-                caption: `𐔌 ꒱ ***SE BUSCA*** 𐔌 ꒱ 🚨
+                caption:
+`‧˚꒰👛୭ *_𝐒 𝐄 𝐁𝐔𝐒𝐂𝐀_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`CARTEL\`\` —˙𖦹.💰꒷
-
-── *📊 INFORMACIÓN* ╏
-🚨 ➛ @${who.split('@')[0]}
-💰 ➛ *Recompensa: 1,000,000$*
-
-━━━━━━━━━━━`,
+╭───CARTEL ꒰💰꒱────╮
+‧˚꒰🚨୭ @${who.split('@')[0]}
+‧˚꒰💰୭ Recompensa: 1,000,000$ 💅
+╰─────── ݁ ˖Ი𐑼⋆────╯`,
                 mentions: [who]
             })
         } catch (e) {
             await react('❌')
-            m.reply(`𐔌 ꒱ ***SE BUSCA*** 𐔌 ꒱ ⚠️\n\n❌ Error al generar la imagen`)
+            m.reply(
+`‧˚꒰👛୭ *_𝐒 𝐄 𝐁𝐔𝐒𝐂𝐀_*
+
+꒰🍧꒱ Error al generar mi reina`
+            )
         }
     }
 
@@ -156,34 +168,34 @@ let handler = async (m, { conn, participants }) => {
         let needxp = currxp + Math.floor(Math.random() * 2000) + 1000
         let apiUrl = `https://api.stellarwa.xyz/generate/rank2?username=${encodeURIComponent(name)}&avatar=${encodeURIComponent(pp)}&background=${encodeURIComponent(defaultBg)}&level=${level}&rank=${rank}&currxp=${currxp}&needxp=${needxp}&key=${key}`
         await react('📊')
-        await m.reply(`𐔌 ꒱ ***TARJETA DE NIVEL*** 𐔌 ꒱ 📊
+        await m.reply(
+`‧˚꒰👛୭ *_𝐑 𝐀 𝐍 𝐊_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`GENERANDO\`\` —˙𖦹.🎮꒷
-
-── *📊 ESTADO* ╏
-🖼️ ➛ Creando tarjeta para @${who.split('@')[0]}...
-
-━━━━━━━━━━━`, { mentions: [who] })
+╭───GENERANDO ꒰📊꒱────╮
+꒰🌼꒱ Creando tarjetita para @${who.split('@')[0]}...
+╰─────── ݁ ˖Ი𐑼⋆────╯`, { mentions: [who] })
         try {
             let res = await fetch(apiUrl, { timeout: 30000 }); let buffer = await res.buffer()
             await conn.sendMessage(m.chat, {
                 image: buffer,
-                caption: `𐔌 ꒱ ***TARJETA DE NIVEL*** 𐔌 ꒱ 📊
+                caption:
+`‧˚꒰👛୭ *_𝐑 𝐀 𝐍 𝐊_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ESTADÍSTICAS\`\` —˙𖦹.🎮꒷
-
-── *📊 DATOS* ╏
-👤 ➛ @${who.split('@')[0]}
-📈 ➛ Nivel: *${level}*
-🏆 ➛ Rank: *#${rank}*
-✨ ➛ XP: *${currxp}/${needxp}*
-
-━━━━━━━━━━━`,
+╭───ESTADÍSTICAS ꒰🎮꒱────╮
+‧˚꒰👧🏻୭ @${who.split('@')[0]}
+‧˚꒰🌼୭ Nivel: ${level}
+‧˚꒰🏷️୭ Rank: #${rank}
+‧˚꒰✨୭ XP: ${currxp}/${needxp}
+╰─────── ݁ ˖Ი𐑼⋆────╯`,
                 mentions: [who]
             })
         } catch (e) {
             await react('❌')
-            m.reply(`𐔌 ꒱ ***TARJETA DE NIVEL*** 𐔌 ꒱ ⚠️\n\n❌ Error al generar la imagen`)
+            m.reply(
+`‧˚꒰👛୭ *_𝐑 𝐀 𝐍 𝐊_*
+
+꒰🍧꒱ Error al generar mi reina`
+            )
         }
     }
 }
