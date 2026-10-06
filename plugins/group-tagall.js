@@ -9,7 +9,6 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
     const groupMetadata = await conn.groupMetadata(m.chat).catch(() => ({ subject: 'Grupo', participants: [] }))
     const groupName = groupMetadata.subject
 
-    // Lista de banderas por prefijo
     const countryFlags = [
       { prefijo: '502', bandera: '🇬🇹' }, { prefijo: '503', bandera: '🇸🇻' },
       { prefijo: '504', bandera: '🇭🇳' }, { prefijo: '505', bandera: '🇳🇮' },
@@ -42,7 +41,6 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
       return '🚩'
     }
 
-    // Agrupar participantes por bandera
     const grouped = {}
     for (const mem of participants) {
       const flag = getCountryFlag(mem)
@@ -50,19 +48,18 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
       grouped[flag].push(mem)
     }
 
-    // Ordenar las banderas según el orden definido
     const orderedFlags = countryFlags.map(c => c.bandera).concat(['🚩'])
 
-    // Texto con diseño DOLLIE BOT
-    let messageText = `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+    let messageText =
+`‧˚꒰👛୭ *_𝐈 𝐍 𝐕 𝐎 𝐂 𝐀 𝐂 𝐈 𝐎 𝐍_*
 
-╭─「 *INVOCACIÓN GENERAL* 」─╮
-│ 👥 *Grupo:* ${groupName}
-│ 📊 *Integrantes:* ${participants.length}
-│ 💌 *Mensaje:* ${customMessage}
-╰─────────────
+╭───GRUPO ꒰👥꒱────╮
+‧˚꒰🌼୭ Grupo: ${groupName}
+‧˚꒰🌼୭ Integrantes: ${participants.length}
+‧˚꒰🍨୭ Mensaje: ${customMessage}
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-├─「 *MIEMBROS POR PAÍS* 」─
+╭───MIEMBROS ꒰🌍꒱────╮
 `
 
     for (const flag of orderedFlags) {
@@ -75,10 +72,10 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
       }
     }
 
-    messageText += `╰─────────────
-> *Mencionados por:* @${m.sender.split('@')[0]} 💌`
+    messageText +=
+`╰─────── ݁ ˖Ი𐑼⋆────╯
+꒰🍨꒱ Mencionados por: @${m.sender.split('@')[0]} 💅`
 
-    // Imagen a puro link - sin catalogo.png
     const imageUrl = 'https://files.evogb.win/n4InsB.jpg'
 
     await conn.sendMessage(m.chat, {
@@ -92,7 +89,7 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
   } catch (error) {
     console.error("[ERROR EN TODOS]:", error)
     await m.react('❌')
-    conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> ❌ *Ocurrió un error al ejecutar el comando*`, m)
+    conn.reply(m.chat, `‧˚꒰👛୭ *_𝐄 𝐑 𝐑 𝐎 𝐑_*\n\n꒰🍧꒱ Ocurrió un error preciosa`, m)
   }
 }
 
