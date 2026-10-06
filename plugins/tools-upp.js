@@ -5,19 +5,21 @@ import { fileTypeFromBuffer } from "file-type"
 let handler = async (m, { conn }) => {
   let q = m.quoted? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
-  if (!mime) return conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+  if (!mime) return conn.reply(m.chat,
+`‧˚꒰👛୭ *_𝐓 𝐎  𝐔 𝐑 𝐋_*
 
-╭─「 *ERROR* 」─╮
-│ ❌ *Responde a un archivo*
-╰─────────────
+╭───ERROR ꒰❌꒱────╮
+‧˚꒰🌼୭ Responde a un archivo
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-├─「 *FORMATOS* 」─
-│ 📷 *Imagen:* JPG, PNG
-│ 🎥 *Video:* MP4
-│ 🎵 *Audio:* MP3, OGG
-│ 📄 *Documento:* PDF, ZIP
-╰─────────────
-> *Responde al archivo que quieres subir* 💌`, m)
+╭───FORMATOS ꒰📦꒱────╮
+‧˚꒰🌼୭ Imagen: JPG, PNG
+‧˚꒰🌼୭ Video: MP4
+‧˚꒰🌼୭ Audio: MP3, OGG
+‧˚꒰🌼୭ Documento: PDF, ZIP
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Responde al archivo preciosa`, m)
 
   try {
     await conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key } })
@@ -25,31 +27,35 @@ let handler = async (m, { conn }) => {
     let link = await myCloud(media)
     if (!link.url) throw new Error()
 
-    let txt = `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+    let txt =
+`‧˚꒰👛୭ *_𝐀 𝐑 𝐂 𝐇 𝐈 𝐕 𝐎_*
 
-╭─「 *ARCHIVO SUBIDO* 」─╮
-│ ✅ *Enlace generado*
-╰─────────────
+╭───SUBIDO ꒰✅꒱────╮
+‧˚꒰🌼୭ Enlace generado
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-├─「 *DETALLES* 」─
-│ 🔗 *Link:* ${link.url}
-│ 🆔 *ID:* ${link.id || 'N/A'}
-│ 📦 *Tamaño:* ${formatBytes(media.length)}
-│ 🌐 *Servidor:* evogb.win
-╰─────────────
-> *Archivo guardado en la nube* ✨`
+╭───DETALLES ꒰🔗꒱────╮
+‧˚꒰🌼୭ Link: ${link.url}
+‧˚꒰🌼୭ ID: ${link.id || 'N/A'}
+‧˚꒰🌼୭ Tamaño: ${formatBytes(media.length)}
+‧˚꒰🌼୭ Servidor: evogb.win
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-    await conn.sendFile(m.chat, media, 'dollie.' + link.url.split('.').pop(), txt, m)
+꒰🍨꒱ Archivo guardado en la nube 💅`
+
+    await conn.sendFile(m.chat, media, 'dolls.' + link.url.split('.').pop(), txt, m)
     await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } })
   } catch (e) {
     console.error(e)
     await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } })
-    await conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+    await conn.reply(m.chat,
+`‧˚꒰👛୭ *_𝐄 𝐑 𝐑 𝐎 𝐑_*
 
-╭─「 *ERROR DE SUBIDA* 」─╮
-│ ❌ *No se pudo subir el archivo*
-╰─────────────
-> *Intenta con otro archivo* 💌`, m)
+╭───FALLO ꒰❌꒱────╮
+‧˚꒰🌼୭ No se pudo subir el archivo
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍧꒱ Intenta con otro archivo preciosa`, m)
   }
 }
 
