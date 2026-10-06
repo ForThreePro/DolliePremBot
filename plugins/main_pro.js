@@ -13,33 +13,29 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
         if (fs.existsSync(tmpPath)) {
             fs.readdirSync(tmpPath).forEach(file => fs.unlinkSync(`${tmpPath}/${file}`))
         }
-        let texto = `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+        let texto =
+`‧˚꒰👛୭ *_𝐋 𝐈 𝐌 𝐏 𝐈 𝐄 𝐙 𝐀_*
 
-╭─「 *LIMPIEZA* 」─╮
-│ 🔥 *Estado:* Caché purificado
-│ ✅ *Resultado:* Memoria liberada
-╰─────────────
+╭───CACHÉ ꒰🔥꒱────╮
+‧˚꒰🌼୭ Estado: Caché purificado
+‧˚꒰🌼୭ Resultado: Memoria liberada
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-├─「 *NOTA* 」─
-│ ⚡ *El bot está más ligero*
-╰─────────────
-> *He limpiado los archivos temporales* 💌`
+꒰🍨꒱ El bot está más ligero ahora 💅`
         await m.react('✅')
         return m.reply(texto)
     }
 
     if (command === 'cpu') {
         let cpu = os.loadavg()[0].toFixed(2)
-        let texto = `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+        let texto =
+`‧˚꒰👛୭ *_𝐂 𝐏 𝐔_*
 
-╭─「 *CPU* 」─╮
-│ 🌌 *Carga:* ${cpu}%
-╰─────────────
+╭───CARGA ꒰🌌꒱────╮
+‧˚꒰🌼୭ Carga: ${cpu}%
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-├─「 *NOTA* 」─
-│ ⚡ *Si supera 90% el bot va lento*
-╰─────────────
-> *Procesador monitoreado* ✨`
+꒰🍧꒱ Si supera 90% el bot va lento preciosa`
         await m.react('✅')
         return m.reply(texto)
     }
@@ -47,16 +43,14 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
     if (command === 'ram') {
         const used = process.memoryUsage()
         let ram = (used.heapUsed / 1024 / 1024).toFixed(2)
-        let texto = `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+        let texto =
+`‧˚꒰👛୭ *_𝐑 𝐀 𝐌_*
 
-╭─「 *RAM* 」─╮
-│ 🌌 *Uso:* ${ram} MB
-╰─────────────
+╭───USO ꒰🌌꒱────╮
+‧˚꒰🌼୭ Uso: ${ram} MB
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-├─「 *NOTA* 」─
-│ ⚡ *Memoria usada por el proceso*
-╰─────────────
-> *Todo bajo control* 💌`
+꒰🍨꒱ Todo bajo control 💌`
         await m.react('✅')
         return m.reply(texto)
     }
@@ -64,16 +58,14 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
     if (command === 'uptime') {
         let _uptime = process.uptime() * 1000
         let uptime = clockString(_uptime)
-        let texto = `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+        let texto =
+`‧˚꒰👛୭ *_𝐔 𝐏 𝐓 𝐈 𝐌 𝐄_*
 
-╭─「 *UPTIME* 」─╮
-│ 🌌 *Tiempo activo:* ${uptime}
-╰─────────────
+╭───TIEMPO ꒰🌌꒱────╮
+‧˚꒰🌼୭ Activo: ${uptime}
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-├─「 *NOTA* 」─
-│ ⚡ *Desde que se inició el bot*
-╰─────────────
-> *Llevamos ${uptime} online* ✨`
+꒰🍨꒱ Llevamos ${uptime} online ✨`
         await m.react('✅')
         return m.reply(texto)
     }
@@ -85,19 +77,21 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
         let cpu = os.loadavg()[0].toFixed(2)
         let ram = (used.heapUsed / 1024 / 1024).toFixed(2)
 
-        let texto = `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+        let texto =
+`‧˚꒰👛୭ *_𝐑 𝐄 𝐏 𝐎 𝐑 𝐓 𝐄_*
 
-╭─「 *REPORTE DE SISTEMA* 」─╮
-│ 🌌 *Uptime:* ${muptime}
-│ 🌌 *RAM:* ${ram} MB
-│ 🌌 *CPU:* ${cpu}%
-╰─────────────
+╭───SISTEMA ꒰🌌꒱────╮
+‧˚꒰🌼୭ Uptime: ${muptime}
+‧˚꒰🌼୭ RAM: ${ram} MB
+‧˚꒰🌼୭ CPU: ${cpu}%
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-├─「 *DETALLES* 」─
-│ ⚡ *Estado:* Operativo
-│ ⚡ *Dev:* Sebastián Barboza
-╰─────────────
-> *Todos los sistemas al 100%* 💌`
+╭───DETALLES ꒰⚡꒱────╮
+‧˚꒰🌼୭ Estado: Operativo
+‧˚꒰🌼୭ Dev: Sebastián Barboza
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Todos los sistemas al 100% 💅`
         await m.react('✅')
         return m.reply(texto)
     }
@@ -107,17 +101,15 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
         let txt = text || q.text || q.caption || q.body || ''
 
         if (!txt) {
-            let texto = `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+            let texto =
+`‧˚꒰👛୭ *_𝐄 𝐑 𝐑 𝐎 𝐑_*
 
-╭─「 *ERROR* 」─╮
-│ ❌ *Falta texto*
-╰─────────────
+╭───FALTA TEXTO ꒰❌꒱────╮
+꒰🍨꒱ ${usedPrefix}tts Hola, ¿cómo estás?
+꒰🍨꒱ O responde a un mensaje
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-├─「 *USO* 」─
-│ 🪄 ${usedPrefix}tts Hola, ¿cómo estás?
-│ 🪞 *O responde a un mensaje*
-╰─────────────
-> *Dime qué quieres que diga* 💌`
+꒰🍧꒱ Dime qué quieres que diga preciosa`
             await m.react('❌')
             return m.reply(texto)
         }
@@ -136,31 +128,19 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
 
         await new Promise((resolve, reject) => {
             ffmpeg(url)
-              .audioCodec('libopus')
-              .toFormat('opus')
-              .outputOptions([
+             .audioCodec('libopus')
+             .toFormat('opus')
+             .outputOptions([
                     '-avoid_negative_ts make_zero',
                     '-ac 1',
                     '-b:a 64k'
                 ])
-              .on('end', () => resolve(true))
-              .on('error', (err) => reject(err))
-              .save(tmpFilePath)
+             .on('end', () => resolve(true))
+             .on('error', (err) => reject(err))
+             .save(tmpFilePath)
         })
 
         let audioBuffer = fs.readFileSync(tmpFilePath)
-
-        let caption = `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
-
-╭─「 *TEXT TO SPEECH* 」─╮
-│ 🎙️ *Idioma:* Español
-│ 🎙️ *Voz:* Google TTS
-╰─────────────
-
-├─「 *TEXTO* 」─
-│ "${txt}"
-╰─────────────
-> *Tu texto convertido en audio* ✨`
 
         await conn.sendMessage(m.chat, {
             audio: audioBuffer,
