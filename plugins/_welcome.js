@@ -2,18 +2,36 @@ import { WAMessageStubType } from '@whiskeysockets/baileys'
 import fetch from 'node-fetch'
 
 const handler = async (m, { conn, args, isAdmin, isOwner }) => {
-  if (!isAdmin &&!isOwner) return conn.reply(m.chat, `🩰 𓆩 ***𝗗𝗢𝗟𝗟𝗜𝗘 𝗕𝗢𝗧*** 𓆪 🩰\n\n💖 *Solo admins pueden usar este comando*`, m)
+  if (!isAdmin &&!isOwner) return conn.reply(m.chat,
+`‧˚꒰👛୭ *_𝐀 𝐕 𝐈 𝐒 𝐎_*
+
+꒰🍧꒱ Solo admins pueden usar este comando preciosa`, m)
   let chat = global.db.data.chats[m.chat]
   if (!chat) global.db.data.chats[m.chat] = {}
 
   if (/on/i.test(args[0])) {
     chat.bienvenida = true
-    await conn.reply(m.chat, `🩰 𓆩 ***𝗕𝗜𝗘𝗡𝗩𝗘𝗡𝗜𝗗𝗔*** 𓆪 🩰\n\n🟢 *Activada con audios*`, m)
+    await conn.reply(m.chat,
+`‧˚꒰👛୭ *_𝐁 𝐈 𝐄 𝐍 𝐕 𝐄 𝐍 𝐈 𝐃 𝐀_*
+
+╭───ESTADO ꒰🟢꒱────╮
+‧˚꒰🌼୭ Activada con audios 💅
+╰─────── ݁ ˖Ი𐑼⋆────╯`, m)
   } else if (/off/i.test(args[0])) {
     chat.bienvenida = false
-    await conn.reply(m.chat, `🩰 𓆩 ***𝗕𝗜𝗘𝗡𝗩𝗘𝗡𝗜𝗗𝗔*** 𓆪 🩰\n\n🔴 *Desactivada*`, m)
+    await conn.reply(m.chat,
+`‧˚꒰👛୭ *_𝐁 𝐈 𝐄 𝐍 𝐕 𝐄 𝐍 𝐈 𝐃 𝐀_*
+
+╭───ESTADO ꒰🔴꒱────╮
+‧˚꒰🍧꒱ Desactivada
+╰─────── ݁ ˖Ი𐑼⋆────╯`, m)
   } else {
-    await conn.reply(m.chat, `🩰 𓆩 ***𝗗𝗢𝗟𝗟𝗜𝗘 𝗕𝗢𝗧*** 𓆪 🩰\n\n📌 *Uso:* ${m.prefix}bienvenida on/off`, m)
+    await conn.reply(m.chat,
+`‧˚꒰👛୭ *_𝐁 𝐈 𝐄 𝐍 𝐕 𝐄 𝐍 𝐈 𝐃 𝐀_*
+
+╭───USO ꒰🩰꒱────╮
+꒰🍨꒱ ${m.prefix}bienvenida on/off
+╰─────── ݁ ˖Ი𐑼⋆────╯`, m)
   }
 }
 
@@ -60,19 +78,39 @@ handler.before = async function (m, { conn, groupMetadata }) {
     case WAMessageStubType.GROUP_PARTICIPANT_ADD:
       audio = chat.audiowelcome
       txt = chat.customWelcome? chat.customWelcome.replace(/@user/gi, userTag).replace(/@group/gi, groupName).replace(/@desc/gi, groupDesc) :
-`🩰 𓆩 ***𝗡𝗨𝗘𝗩𝗔 𝗗𝗢𝗟𝗟𝗜𝗘*** 𓆪 🩰\n\n💖 *${userTag}* llegó a *${groupName}*\n✨ *Somos:* ${membersCount} dollies`
+`‧˚꒰👛୭ *_𝐍 𝐔 𝐄 𝐕 𝐀 𝐃 𝐎 𝐋 𝐋 𝐈 𝐄_*
+
+╭───WELCOME ꒰💖꒱────╮
+‧˚꒰👧🏻୭ ${userTag} llegó a ${groupName} 💅
+‧˚꒰🌼୭ Somos: ${membersCount} dollies ✨
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Bienvenida preciosa 👛`
       break
 
     case WAMessageStubType.GROUP_PARTICIPANT_LEAVE:
       audio = chat.audiobye
       txt = chat.customBye? chat.customBye.replace(/@user/gi, userTag).replace(/@group/gi, groupName) :
-`🩰 𓆩 ***𝗦𝗘 𝗙𝗨𝗘*** 𓆪 🩰\n\n🥺 *${userTag}* salió de *${groupName}*\n💔 *Quedamos:* ${membersCount}`
+`‧˚꒰👛୭ *_𝐒 𝐄 𝐅 𝐔 𝐄_*
+
+╭───BYE ꒰🥺꒱────╮
+‧˚꒰🍧୭ ${userTag} salió de ${groupName}
+‧˚꒰🌼୭ Quedamos: ${membersCount}
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Se nos fue una dollie 💔`
       break
 
     case WAMessageStubType.GROUP_PARTICIPANT_REMOVE:
       audio = chat.audiokick
       txt = chat.customKick? chat.customKick.replace(/@user/gi, userTag).replace(/@group/gi, groupName) :
-`🩰 𓆩 ***𝗘𝗫𝗣𝗨𝗟𝗦𝗔𝗗𝗔*** 𓆪 🩰\n\n😢 *${userTag}* fue removida de *${groupName}*`
+`‧˚꒰👛୭ *_𝐄 𝐗 𝐏 𝐔 𝐋 𝐒 𝐀 𝐃 𝐀_*
+
+╭───KICK ꒰😢꒱────╮
+‧˚꒰🍧୭ ${userTag} fue removida de ${groupName}
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🌼꒱ Bye bye preciosa 👋`
       break
   }
 
