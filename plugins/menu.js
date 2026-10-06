@@ -1,18 +1,16 @@
+
 import os from 'os'
-import { performance } from 'perf_hooks'
 
 let handler = async (m, { conn, usedPrefix }) => {
   let loadMsg = await conn.reply(m.chat, `‧˚꒰👛୭ *_𝐂 𝐀 𝐑 𝐆 𝐀 𝐍 𝐃 𝐎_*\n\n꒰⏳꒱ Cargando menú...`, m)
 
   let uptime = process.uptime() * 1000
-  let _uptime = clockString(uptime)
   let totalreg = Object.keys(global.db.data.users).length
-  let totalcmd = Object.values(global.plugins).filter(p => p.help &&!p.disabled).length
 
   let fecha = new Date().toLocaleDateString('es-PE', {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
     timeZone: 'America/Lima'
-  }).split(',')
+  })
   let hora = new Date().toLocaleTimeString('es-PE', {
     hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true,
     timeZone: 'America/Lima'
@@ -28,55 +26,57 @@ let handler = async (m, { conn, usedPrefix }) => {
   }
 
   const catDesign = {
-    fun: { icon: '🦩', name: 'FUN' },
-    owner: { icon: '💎', name: 'OWNER' },
-    group: { icon: '🛍️', name: 'GRUPOS' },
-    grupos: { icon: '🛍️', name: 'GRUPOS' },
-    admin: { icon: '🎡', name: 'ADMIN' },
-    config: { icon: '🎀', name: 'CONFIG' },
-    downloader: { icon: '🪩', name: 'DESCARGAS' },
-    tools: { icon: '🪷', name: 'TOOLS' },
-    search: { icon: '🌄', name: 'SEARCH' },
-    diversión: { icon: '🧋', name: 'DIVERSIÓN' },
-    ff: { icon: '🌟', name: 'FREE FIRE' },
-    ia: { icon: '🩰', name: 'IA' },
-    main: { icon: '🪞', name: 'MAIN' },
-    info: { icon: '🌷', name: 'INFO' },
-    sticker: { icon: '🎐', name: 'STIKERS' },
-    ai: { icon: '👘', name: 'AI' },
-    otros: { icon: '🤍', name: 'MISC' }
+    tools: { icon: '🌼', name: 'TOOLS', pref: '꒰🌼꒱' },
+    fun: { icon: '🏷️', name: 'FUN', pref: '‧˚꒰🏷️୭' },
+    owner: { icon: '🌤️', name: 'OWNER', pref: '‧˚꒰🌤️୭' },
+    group: { icon: '🍄', name: 'GRUPOS', pref: '‧˚꒰🍄୭' },
+    grupos: { icon: '💌', name: 'GRUPOS', pref: '‧˚꒰💌୭' },
+    admin: { icon: '🍄', name: 'GRUPOS', pref: '‧˚꒰🍄୭' },
+    config: { icon: '🍨', name: 'CONFIG', pref: '꒰🍨꒱' },
+    downloader: { icon: '🍯', name: 'DESCARGAS', pref: '‧˚꒰🍯୭' },
+    search: { icon: '👧🏻', name: 'SEARCH', pref: '‧꒰👧🏻୭' },
+    diversión: { icon: '🎪', name: 'DIVERSIÓN', pref: '꒰🎪꒱' },
+    buscador: { icon: '🪩', name: 'BUSCADOR', pref: '‧˚꒰🪩୭' },
+    ff: { icon: '🔴', name: 'FREEFIRE', pref: '꒰🔴꒱' },
+    ia: { icon: '🩰', name: 'AI', pref: '‧˚꒰🩰୭' },
+    ai: { icon: '🩰', name: 'AI', pref: '‧˚꒰🩰୭' },
+    main: { icon: '🦢', name: 'MAIN', pref: '‧˚꒰🦢୭' },
+    info: { icon: '🎨', name: 'INFO', pref: '‧˚꒰🎨୭' },
+    serbot: { icon: '⛲', name: 'SERBOT', pref: '‧˚꒰⛲୭' },
+    sticker: { icon: '🍰', name: 'STIKERS', pref: '‧˚꒰🍰୭' },
+    grupo: { icon: '👛', name: 'GRUPO', pref: '‧˚꒰👛୭' },
+    otros: { icon: '✨', name: 'OTROS', pref: '‧˚꒰✨୭' }
   }
 
   let menu =
-`‧˚꒰👛୭ *_𝐌 𝐄 𝐍 𝐔 𝐃 𝐎 𝐋 𝐋 𝐒_* 🩰
+`‧˚꒰👛୭ *_𝐌 𝐄 𝐍 𝐔́ 𝐃 𝐎 𝐋 𝐋 𝐈 𝐄_*
 
-꒰🍨꒱ ¡DESCUBRE MIS COMANDOS PRECIOSA!
+¡𝐃𝐄𝐒𝐂𝐔𝐁𝐑𝐄 𝐈𝐍𝐂𝐑𝐄𝐈́𝐁𝐋𝐄𝐒 𝐂𝐎𝐌𝐀𝐍𝐃𝐎𝐒!!
 
-╭───WELCOME ꒰🪞꒱────╮
-‧˚꒰👧🏻୭ @${m.sender.split('@')[0]}
-‧˚꒰🌼୭ ${fecha[0].trim()}, ${fecha[1].trim()}
-‧˚꒰⏰୭ Hora: ${hora}
-‧˚꒰✨୭ Uptime: ${_uptime} | Users: ${totalreg} | Cmds: ${totalcmd}
-╰─────── ݁ ˖Ი𐑼⋆────╯
+꒰🍧꒱.*꒰𝙒 𝙀 𝙇 𝘾 𝙊 𝙈 𝙀 ୭*
+꒰🍨꒱.*꒰ @${m.sender.split('@')[0]} ୭*
+
+> \`\` ${fecha} │ Hora: ${hora} \`\`
 
 `
 
   for (let category in groups) {
-    let design = catDesign[category] || { icon: '✨', name: category.toUpperCase() }
+    let design = catDesign[category] || { icon: '✨', name: category.toUpperCase(), pref: '‧˚꒰✨୭' }
     menu += `╭───${design.name} ꒰${design.icon}꒱────╮\n`
     for (let cmd of groups[category]) {
-      menu += `‧˚꒰${design.icon}୭ ${usedPrefix}${cmd}\n`
+      menu += `${design.pref} ${usedPrefix}${cmd}\n`
     }
     menu += `╰─────── ݁ ˖Ი𐑼⋆────╯\n\n`
   }
 
   menu +=
-`─────── ݁ ˖Ი𐑼⋆──────
-‧˚꒰🪞୭ BOT: DOLLS BOT
-‧˚꒰🌸୭ Creador: Dollie Team
-‧˚꒰🦩୭ Versión: 3.0.0 Premium
+`─────── ꒰🍨꒱───────
 
-꒰🍨꒱ DOLLS al servicio del chat 💅`
+꒰ *BOT:* 𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓
+꒰ *Creador:* 𝐃𝐨𝐥𝐥𝐲𝐒🌼
+꒰ *Versión:* 3.0.0 Premium
+
+> 𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓 al servicio del chat`
 
   await conn.sendMessage(m.chat, { delete: loadMsg.key })
   await conn.sendMessage(m.chat, {
