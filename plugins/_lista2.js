@@ -21,15 +21,13 @@ let handler = async (m, { conn }) => {
 
     if (total === 0) {
         await react('📭')
-        let vacia = `𐔌 ꒱ ***BORRAR LISTA*** 𐔌 ꒱ 📭
+        let vacia =
+`‧˚꒰👛୭ *_𝐁 𝐎 𝐑 𝐑 𝐀 𝐑 𝐋𝐈𝐒𝐓𝐀_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`LISTA VACÍA\`\` —˙𖦹.🗑️꒷
-
-── *📝 AVISO* ╏
-📭 ➛ La lista de este grupo ya está vacía
-📭 ➛ No hay registros para borrar
-
-━━━━━━━━━━━`
+╭───LISTA VACÍA ꒰📭꒱────╮
+꒰🍧꒱ La lista de este grupo ya está vacía
+꒰🌼꒱ No hay registros para borrar preciosa
+╰─────── ݁ ˖Ი𐑼⋆────╯`
         return conn.sendMessage(m.chat, { text: vacia }, { quoted: m })
     }
 
@@ -37,19 +35,18 @@ let handler = async (m, { conn }) => {
     fs.writeFileSync(db, JSON.stringify([]))
 
     let hora = new Date().toLocaleTimeString('es-PE', {timeZone: 'America/Lima', hour: '2-digit', minute: '2-digit'})
-    let texto = `𐔌 ꒱ ***BORRAR LISTA*** 𐔌 ꒱ ✅
+    let texto =
+`‧˚꒰👛୭ *_𝐁 𝐎 𝐑 𝐑 𝐀 𝐑 𝐋𝐈𝐒𝐓𝐀_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`BORRADO EXITOSO\`\` —˙𖦹.🗑️꒷
+╭───BORRADO EXITOSO ꒰🗑️꒱────╮
+‧˚꒰🗑️୭ Se eliminaron: ${total} registro${total > 1 ? 's' : ''}
+‧˚꒰📅୭ Rango: Lunes a Sábado
+‧˚꒰⏰୭ Hora: ${hora}
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-── *📊 INFORMACIÓN* ╏
-🗑️ ➛ Se eliminaron: *${total}* registro${total > 1 ? 's' : ''}
-📅 ➛ Rango: *Lunes a Sábado*
-⏰ ➛ Hora: *${hora}*
-
-── *📦 ESTADO* ╏
-✅ ➛ Lista de este grupo reiniciada
-
-━━━━━━━━━━━`
+╭───ESTADO ꒰✅꒱────╮
+꒰🌼꒱ Lista reiniciada con éxito ✨
+╰─────── ݁ ˖Ი𐑼⋆────╯`
 
     return conn.sendMessage(m.chat, { text: texto }, { quoted: m })
 }
