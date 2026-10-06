@@ -1,18 +1,26 @@
 import { exec } from "child_process"
 
+const OWNER_NUMBER = "5218621029907@s.whatsapp.net" // +52 1 862 102 9907
+const OWNER_NUMBER2 = "528621029907@s.whatsapp.net" // por si viene sin el 1
+
 let handler = async (m, { conn, command }) => {
+    // Solo tu número puede usar esto
+    if (![OWNER_NUMBER, OWNER_NUMBER2].includes(m.sender)) return
+
     const owner = "@dollie.bot"
 
     // 1. RESET
     if (command === 'reset') {
         await m.react('🔄')
-        await m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+        await m.reply(
+`‧˚꒰👛୭ *_𝐑 𝐄 𝐈 𝐍 𝐈 𝐂 𝐈 𝐀 𝐍 𝐃 𝐎_*
 
-╭─「 *REINICIANDO* 」─╮
-│ 🔄 *Estado:* Reiniciando sistema
-│ ⏳ *Por favor espere...*
-╰─────────────
-> *Iniciando de nuevo* 💌`)
+╭───RESET ꒰🔄꒱────╮
+‧˚꒰🌼୭ Estado: Reiniciando sistema
+‧˚꒰⏳୭ Por favor espere...
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Iniciando de nuevo 💅`)
         process.send('reset')
     }
 
@@ -21,19 +29,22 @@ let handler = async (m, { conn, command }) => {
         try {
             await m.react('👑')
             await conn.groupParticipantsUpdate(m.chat, [conn.user.jid], 'promote')
-            await m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+            await m.reply(
+`‧˚꒰👛୭ *_𝐀 𝐔 𝐓 𝐎 𝐀 𝐃 𝐌 𝐈 𝐍_*
 
-╭─「 *AUTOADMIN* 」─╮
-│ 👑 *Estado:* Admin asignado
-│ ✅ *Ya tengo permisos en este grupo*
-╰─────────────
-> *Puedo administrar correctamente* ✨`)
+╭───ADMIN ꒰👑꒱────╮
+‧˚꒰🌼୭ Estado: Admin asignado
+‧˚꒰🌼୭ Ya tengo permisos en este grupo
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Puedo administrar correctamente ✨`)
         } catch (e) {
             await m.react('❌')
-            m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+            m.reply(
+`‧˚꒰👛୭ *_𝐄 𝐑 𝐑 𝐎 𝐑_*
 
-> ❌ *Error:* No pude asignarme admin. 
-> Revisa que ya no sea admin o que tengas permisos`)
+꒰🍧꒱ No pude asignarme admin
+꒰🍧꒱ Revisa que ya no sea admin o que tengas permisos`)
         }
     }
 
@@ -41,49 +52,56 @@ let handler = async (m, { conn, command }) => {
     if (command === 'update' || command === 'actualizar' || command === 'fix') {
         if (m.react) await m.react('🌀')
 
-        await conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+        await conn.reply(m.chat,
+`‧˚꒰👛୭ *_𝐀 𝐂 𝐓 𝐔 𝐀 𝐋 𝐈 𝐙 𝐀 𝐍 𝐃 𝐎_*
 
-╭─「 *ACTUALIZANDO* 」─╮
-│ 🌀 *Estado:* Bajando cambios del repositorio
-╰─────────────
-> *Espere un momento* 💌`, m)
+╭───UPDATE ꒰🌀꒱────╮
+‧˚꒰🌼୭ Estado: Bajando cambios del repo
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Espere un momento preciosa`, m)
 
         exec('git pull', async (err, stdout, stderr) => {
             if (err) {
                 if (m.react) await m.react('❌')
-                return conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+                return conn.reply(m.chat,
+`‧˚꒰👛୭ *_𝐄 𝐑 𝐑 𝐎 𝐑_*
 
-╭─「 *ERROR* 」─╮
-│ ❌ *Fallo en la actualización*
-╰─────────────
+╭───FALLO ꒰❌꒱────╮
+‧˚꒰🌼୭ Fallo en la actualización
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
 \`\`${err.message}\`\`
 
-> *Contacta a:* ${owner}`, m)
+꒰🍧꒱ Contacta a: ${owner}`, m)
             }
 
             if (stdout.includes('Already up to date.')) {
                 if (m.react) await m.react('✅')
-                return conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+                return conn.reply(m.chat,
+`‧˚꒰👛୭ *_𝐀 𝐂 𝐓 𝐔 𝐀 𝐋 𝐈 𝐙 𝐀 𝐃 𝐎_*
 
-╭─「 *ACTUALIZADO* 」─╮
-│ ✅ *El sistema ya está actualizado*
-│ 📦 *Versión:* Más reciente
-╰─────────────
-> *No hay cambios nuevos* ✨`, m)
+╭───UP TO DATE ꒰✅꒱────╮
+‧˚꒰🌼୭ El sistema ya está actualizado
+‧˚꒰🌼୭ Versión: Más reciente
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ No hay cambios nuevos ✨`, m)
             }
 
             if (m.react) await m.react('✅')
-            return conn.reply(m.chat, `𝐃𝐎𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+            return conn.reply(m.chat,
+`‧˚꒰👛୭ *_𝐀 𝐂 𝐓 𝐔 𝐀 𝐋 𝐈 𝐙 𝐀 𝐂 𝐈 𝐎 𝐍_*
 
-╭─「 *ACTUALIZACIÓN EXITOSA* 」─╮
-│ ✅ *Cambios aplicados correctamente*
-╰─────────────
+╭───EXITOSA ꒰✅꒱────╮
+‧˚꒰🌼୭ Cambios aplicados correctamente
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-├─「 *DETALLES* 」─
+╭───DETALLES ꒰📦꒱────╮
 \`\`${stdout}\`\`
-╰─────────────
-> *Sistema actualizado* 💌`, m)
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Sistema actualizado 💅`, m)
         })
     }
 }
