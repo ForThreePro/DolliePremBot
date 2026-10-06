@@ -3,7 +3,7 @@ import { toAudio } from '../lib/converter.js'
 let handler = async (m, { conn, usedPrefix, command }) => {
 let q = m.quoted ? m.quoted : m
 let mime = (m.quoted ? m.quoted : m.msg).mimetype || ''
-if (!/video|audio/.test(mime)) throw `⚡ Responde al *Video* o *Nota de Voz* que desea convertir a mp3.`
+if (!/video|audio/.test(mime)) throw `‧˚꒰👛୭ *_𝐓 𝐎  𝐌 𝐏 𝟑_*\n\n꒰🍧꒱ Responde a un video o nota de voz preciosa`
 try {
 let media = await q.download?.()
 if (!media) return null
