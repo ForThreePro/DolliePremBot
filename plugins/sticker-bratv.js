@@ -10,19 +10,18 @@ return response.data
 const handler = async (m, { conn, text }) => {
 try {
 text = m.quoted?.text || text
-if (!text) return conn.sendMessage(m.chat, { text: `🍕 *responde a un mensaje o ingresa un texto para crear el sticker*` }, { quoted: m })
+if (!text) return conn.sendMessage(m.chat, { text: `‧˚꒰👛୭ *_𝐁 𝐑 𝐀 𝐓 𝐕_*\n\n꒰🍧꒱ Responde a un mensaje o ingresa un texto preciosa` }, { quoted: m })
 
 await m.react('🕒')
 const videoBuffer = await fetchStickerVideo(text)
 
-// SIN MARCA DE AGUA NI PACK
 const stickerBuffer = await sticker(videoBuffer, false)
 await conn.sendMessage(m.chat, { sticker: stickerBuffer }, { quoted: m })
 await m.react('✅')
 
 } catch (e) {
 await m.react('❌')
-conn.sendMessage(m.chat, { text: `😿 *ocurrió un error*\n\n*Detalle:* ${e.message}` }, { quoted: m })
+conn.sendMessage(m.chat, { text: `‧˚꒰👛୭ *_𝐄 𝐑 𝐑 𝐎 𝐑_*\n\n꒰🍧꒱ ${e.message}` }, { quoted: m })
 }}
 
 handler.tags = ['sticker']
