@@ -2,7 +2,6 @@ import axios from 'axios'
 import FormData from 'form-data'
 import { downloadContentFromMessage } from "@whiskeysockets/baileys"
 
-// CONFIG API STELLAR
 const api = {
     url: 'https://api.stellarwa.xyz',
     key: 'proyectsV2'
@@ -38,42 +37,43 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     const q = m.quoted || m
     const mime = (q.msg || q).mimetype || ''
 
-    if (!mime) return m.reply(`Responde a una imagen con: ${usedPrefix + command}`)
+    if (!mime) return m.reply(
+`‧˚꒰👛୭ *_𝐇 𝐃_*
+
+꒰🍧꒱ Responde a una imagen con: ${usedPrefix + command}`)
+
     if (!/image\/(jpe?g|png)/.test(mime)) {
-      return m.reply(`Solo se acepta imagen JPG/PNG`)
+      return m.reply(`‧˚꒰👛୭ *_𝐇 𝐃_*\n\n꒰🍧꒱ Solo JPG/PNG preciosa`)
     }
 
     try {
       await m.react('⏳')
 
-      // Proceso: Descargar > Uguu > HD
       const buffer = await q.download()
       const uploadedUrl = await uploadToUguu(buffer, mime)
       const hdBuffer = await upscaleImage(uploadedUrl)
 
-      // Enviar imagen HD
       await conn.sendMessage(m.chat, {
         image: hdBuffer,
-        caption: `*Resultado HD 2x*\nKey: proyectsV2`
+        caption: `‧˚꒰👛୭ *_𝐇 𝐃 𝟐𝐗_*\n\n꒰🍨꒱ Imagen mejorada en HD 💅`
       }, { quoted: m })
 
-      // Enviar también como documento
       await conn.sendMessage(m.chat, {
         document: hdBuffer,
         fileName: 'hd.png',
         mimetype: 'image/png',
-        caption: `Documento HD 2x`
+        caption: `‧˚꒰👛୭ HD 2X DOC`
       }, { quoted: m })
 
       await m.react('✅')
 
     } catch (err) {
       await m.react('❌')
-      await m.reply(`Error: ${err.message || err}`)
+      await m.reply(`‧˚꒰👛୭ *_𝐄 𝐑 𝐑 𝐎 𝐑_*\n\n꒰🍧꒱ ${err.message || err}`)
     }
 }
 
 handler.help = ['hd', 'upscale', 'remini']
-handler.tags = ['tools', 'ai']
+handler.tags = ['tools']
 handler.command = /^(hd|upscale|remini)$/i
 export default handler
