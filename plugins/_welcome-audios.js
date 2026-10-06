@@ -7,7 +7,7 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
 
   // Detectar tipo: welcome / bye / kick
   let type = command.replace('audiowelcome','').replace('audiobye','').replace('audiokick','')
-                .replace('delaudiowelcome','').replace('delaudiobye','').replace('delaudiokick','')
+               .replace('delaudiowelcome','').replace('delaudiobye','').replace('delaudiokick','')
 
   if (command.includes('welcome')) type = 'welcome'
   if (command.includes('bye')) type = 'bye'
@@ -19,49 +19,60 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
     if (mime && /audio/.test(mime)) {
       let buffer = await q.download()
       chat[`audio${type}`] = buffer
-      return m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+      return m.reply(
+`‧˚꒰👛୭ *_𝐀 𝐔 𝐃 𝐈 𝐎 𝐆𝐔𝐀𝐑𝐃𝐀𝐃𝐎_*
 
-╭─「 *AUDIO GUARDADO* 」─╮
-│ 🎵 *Tipo:* ${type}
-│ ✅ *Estado:* Guardado correctamente
-╰─────────────
-> *Se reproducirá cuando ocurra el evento* 💌`)
+╭───AUDIO ꒰🎵꒱────╮
+‧˚꒰🎵୭ Tipo: ${type}
+‧˚꒰✅୭ Estado: Guardado correctamente 💅
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Se reproducirá cuando ocurra el evento 💌`)
     }
 
     // Si manda un link
     if (args[0] && args[0].startsWith('http')) {
       chat[`audio${type}`] = args[0]
-      return m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+      return m.reply(
+`‧˚꒰👛୭ *_𝐋 𝐈 𝐍 𝐊 𝐆𝐔𝐀𝐑𝐃𝐀𝐃𝐎_*
 
-╭─「 *LINK GUARDADO* 」─╮
-│ 🎵 *Tipo:* ${type}
-│ 🔗 *Link:* ${args[0]}
-╰─────────────
-> *Audio de ${type} configurado* ✨`)
+╭───AUDIO ꒰🔗꒱────╮
+‧˚꒰🎵୭ Tipo: ${type}
+‧˚꒰🔗୭ Link: ${args[0]}
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Audio de ${type} configurado ✨`)
     }
 
-    return m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+    return m.reply(
+`‧˚꒰👛୭ *_𝐀 𝐔 𝐃 𝐈 𝐎 ${type.toUpperCase()}_*
 
-╭─「 *AUDIO ${type.toUpperCase()}* 」─╮
-│ 🪄 *Uso:* ${usedPrefix}${command} + [responder a audio]
-│ 🪄 *Uso:* ${usedPrefix}${command} <link del audio>
-╰─────────────
-> *Guarda un audio para ${type}* 💌`)
+╭───USO ꒰🩰꒱────╮
+꒰🍨꒱ ${usedPrefix}${command} + responder a audio
+꒰🍨꒱ ${usedPrefix}${command} <link del audio>
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍧꒱ Guarda un audio para ${type} preciosa 💌`)
   }
 
   // DEL AUDIO
   if (command.startsWith('delaudio')) {
     if (!chat[`audio${type}`]) {
-      return m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> ⚠️ *No hay un audio de ${type} configurado*`)
+      return m.reply(
+`‧˚꒰👛୭ *_𝐀 𝐔 𝐃 𝐈 𝐎_*
+
+꒰🍧꒱ No hay audio de ${type} configurado`)
     }
     delete chat[`audio${type}`]
-    await m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+    await m.reply(
+`‧˚꒰👛୭ *_𝐀 𝐔 𝐃 𝐈 𝐎 𝐄𝐋𝐈𝐌𝐈𝐍𝐀𝐃𝐎_*
 
-╭─「 *AUDIO ELIMINADO* 」─╮
-│ 🗑️ *Tipo:* ${type}
-│ ❌ *Estado:* Eliminado
-╰─────────────
-> *Ya no se reproducirá audio* ✨`)
+╭───AUDIO ꒰🗑️꒱────╮
+‧˚꒰🗑️୭ Tipo: ${type}
+‧˚꒰❌୭ Estado: Eliminado
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Ya no se reproducirá ✨`)
   }
 }
 
