@@ -21,13 +21,15 @@ let handler = async (m, { conn, command }) => {
     await conn.groupSettingUpdate(m.chat, isClose)
     await m.react(react)
 
-    await conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+    await conn.reply(m.chat,
+`‧˚꒰👛୭ *_𝐆 𝐑 𝐔 𝐏 𝐎 ${estado}_*
 
-╭─「 *GRUPO ${estado}* 」─╮
-│ ${icon} *Estado:* El grupo fue ${estado.toLowerCase()}
-│ 👑 *Por:* @${m.sender.split('@')[0]}
-╰─────────────
-> *Configuración actualizada* 💌`, m, {
+╭───ESTADO ꒰${react}꒱────╮
+‧˚꒰${icon}୭ Estado: El grupo fue ${estado.toLowerCase()}
+‧˚꒰👧🏻୭ Por: @${m.sender.split('@')[0]}
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Configuración actualizada 💅`, m, {
         mentions: [m.sender]
     })
 }
