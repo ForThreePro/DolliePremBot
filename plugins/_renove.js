@@ -16,27 +16,27 @@ const handler = async (m, { conn, command }) => {
     try {
         let q = m.quoted? m.quoted : m
         let mime = (q.msg || q).mimetype || ''
-        if (!mime || !/audio|video/.test(mime)) return m.reply(`🎀 𓆩✿𓆪 🎀
-😻🙊 𓆩 𝗗𝗢𝗟𝗟𝗜𝗘 𝗕𝗢𝗧 𓆪 😻🙊
+        if (!mime || !/audio|video/.test(mime)) return m.reply(
+`‧˚꒰👛୭ *_𝐌 𝐔 𝐒 𝐈 𝐂_*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`𝐌𝐮𝐬𝐢𝐜\`\` —˙𖦹.💭꒷
+╭───BUSCADOR ꒰🎵꒱────╮
+‧˚꒰🎵୭ .song = Info + Audio
+‧˚꒰🌼୭ .letra = Letra + Audio
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
- ⤷ ┇ 𝗕𝗨𝗦𝗖𝗔𝗗𝗢𝗥 𝗗𝗘 𝗠𝗨𝗦𝗜𝗖𝗔
-💭 ➛ .song = Info + Audio
-💭 ➛ .letra = Letra + Audio
-
-🎀 𓆩✿𓆪 🎀
-> "Meow~ ¿hay snacks?" 🍪`)
+꒰🍨꒱ Responde a un audio/video preciosa 👛`)
 
         await m.react('🔍')
         let buffer = await q.download()
         if (!buffer) throw 'Error al descargar'
 
-        await m.reply(`🎀 𓆩✿𓆪 🎀
-😻🙊 𓆩 𝗗𝗢𝗟𝗟𝗜𝗘 𝗕𝗢𝗧 𓆪 😻🙊
- ⤷ ┇ 🌸 OLFATEANDO MÚSICA
-💭 ➛ Analizando ${CLIP_SECONDS}s... nyaa
-🎀 𓆩✿𓆪 🎀`)
+        await m.reply(
+`‧˚꒰👛୭ *_𝐌 𝐔 𝐒 𝐈 𝐂_*
+
+╭───OLFATEANDO ꒰🔍꒱────╮
+꒰🌼꒱ Analizando ${CLIP_SECONDS}s...
+꒰🍧꒱ Espera un segundito ✨
+╰─────── ݁ ˖Ი𐑼⋆────╯`)
 
         let clip = await prepareClip(buffer, CLIP_SECONDS)
         let url = await uploadUguu(clip)
@@ -58,15 +58,17 @@ const handler = async (m, { conn, command }) => {
         if(command === 'song'){
             await conn.sendMessage(m.chat, {
                 image: thumb,
-                caption: `🎀 𓆩✿𓆪 🎀
-😻🙊 𓆩 𝗗𝗢𝗟𝗟𝗜𝗘 𝗕𝗢𝗧 𓆪 😻🙊
- ⤷ ┇ 🎀 KYA~ LO ENCONTRÉ
-📌 ➛ ${title}
-👤 ➛ ${author.name}
-👁️ ➛ ${vistas} | ⏱️ ${timestamp}
-🔗 ➛ ${shortUrl}
-🎀 𓆩✿𓆪 🎀
-> "Meow~ ¿hay snacks?" 🍪`
+                caption:
+`‧˚꒰👛୭ *_𝐋 𝐎 𝐄𝐍𝐂𝐎𝐍𝐓𝐑𝐄_*
+
+╭───INFO ꒰🎵꒱────╮
+‧˚꒰🎵୭ 📌 ${title}
+‧˚꒰👧🏻୭ 👤 ${author.name}
+‧˚꒰🌼୭ 👁️ ${vistas} | ⏱️ ${timestamp}
+‧˚꒰🍯୭ 🔗 ${shortUrl}
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Listo mi reina 👛`
             }, { quoted: m })
             await conn.sendMessage(m.chat, { audio: { url: mediaUrl }, fileName: `${title}.mp3`, mimetype: 'audio/mpeg' }, { quoted: m })
         }
@@ -74,22 +76,29 @@ const handler = async (m, { conn, command }) => {
         if(command === 'letra'){
             await m.react('📝')
             const lyricsRes = await fetch(`https://api.lyrics.ovh/v1/${encodeURIComponent(song.artist)}/${encodeURIComponent(song.title)}`).then(r => r.json())
-            let lyrics = lyricsRes.lyrics || 'No encontré la letra'
+            let lyrics = lyricsRes.lyrics || 'No encontré la letra preciosa'
             if(lyrics.length > 1500) lyrics = lyrics.slice(0, 1500) + '\n\n...'
-            await conn.sendMessage(m.chat, { text: `🎀 𓆩✿𓆪 🎀
-😻🙊 𓆩 𝗗𝗢𝗟𝗟𝗜𝗘 𝗕𝗢𝗧 - LETRA 𓆪 😻🙊
-📌 *${title}* - *${author.name}*
-\`\`\`${lyrics}\`\`\`
-🎀 𓆩✿𓆪 🎀` }, { quoted: m })
+            await conn.sendMessage(m.chat, { text:
+`‧˚꒰👛୭ *_𝐋 𝐄 𝐓 𝐑 𝐀_*
+
+╭───CANCIÓN ꒰📝꒱────╮
+‧˚꒰🎵୭ ${title} - ${author.name}
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+${lyrics}
+
+‧˚꒰🍨꒱ Letra encontrada ✨` }, { quoted: m })
             await conn.sendMessage(m.chat, { audio: { url: mediaUrl }, fileName: `${title}.mp3`, mimetype: 'audio/mpeg' }, { quoted: m })
         }
         await m.react('✅')
     } catch(e) {
         await m.react('❌')
-        m.reply(`🎀 𓆩✿𓆪 🎀
-😻🙊 😿 Nyaa falló
-⚠️ ➛ ${e.message}
-🎀 𓆩✿𓆪 🎀`)
+        m.reply(
+`‧˚꒰👛୭ *_𝐄 𝐑 𝐑 𝐎 𝐑_*
+
+╭───ERROR ꒰🍧꒱────╮
+꒰🌼꒱ ${e.message}
+╰─────── ݁ ˖Ი𐑼⋆────╯`)
     }
 }
 
