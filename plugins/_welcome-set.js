@@ -7,46 +7,55 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
 
   // SET
   if (command.startsWith('set')) {
-    if (!text) return m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+    if (!text) return m.reply(
+`‧˚꒰👛୭ *_𝐒 𝐄 𝐓 ${type.toUpperCase()}_*
 
-╭─「 *SET ${type.toUpperCase()}* 」─╮
-│ 🪄 *Uso:* ${usedPrefix}${command} <texto>
-╰─────────────
+╭───USO ꒰🩰꒱────╮
+꒰🍨꒱ ${usedPrefix}${command} <texto>
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-├─「 *VARIABLES* 」─
-│ 👤 *@user* = Menciona al usuario
-│ 👥 *@group* = Nombre del grupo  
-│ 📝 *@desc* = Descripción del grupo
-╰─────────────
-> *Ejemplo:* ${usedPrefix}${command} Hola @user a @group 💌`)
+╭───VARIABLES ꒰🌼꒱────╮
+‧˚꒰👧🏻୭ @user = Menciona al usuario
+‧˚꒰👥୭ @group = Nombre del grupo
+‧˚꒰📝୭ @desc = Descripción del grupo
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍧꒱ Ejemplo: ${usedPrefix}${command} Hola @user a @group 💌`)
 
     chat[`custom${type.charAt(0).toUpperCase() + type.slice(1)}`] = text
-    await m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+    await m.reply(
+`‧˚꒰👛୭ *_𝐌 𝐄 𝐍 𝐒 𝐀 𝐉 𝐄 𝐆𝐔𝐀𝐑𝐃𝐀𝐃𝐎_*
 
-╭─「 *MENSAJE GUARDADO* 」─╮
-│ ✅ *Tipo:* ${type}
-│ 💌 *Estado:* Personalizado
-╰─────────────
+╭───INFO ꒰✅꒱────╮
+‧˚꒰✅୭ Tipo: ${type}
+‧˚꒰💌୭ Estado: Personalizado
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-├─「 *VISTA PREVIA* 」─
-│ ${text}
-╰─────────────
-> *Se usará cuando ocurra el evento* ✨`)
+╭───VISTA PREVIA ꒰🍨꒱────╮
+꒰🌼꒱ ${text}
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Se usará cuando ocurra el evento ✨`)
   }
 
   // DEL
   if (command.startsWith('del')) {
     if (!chat[`custom${type.charAt(0).toUpperCase() + type.slice(1)}`]) {
-      return m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> ⚠️ *No hay un ${type} personalizado configurado*`)
+      return m.reply(
+`‧˚꒰👛୭ *_𝐀 𝐕 𝐈 𝐒 𝐎_*
+
+꒰🍧꒱ No hay ${type} personalizado configurado`)
     }
     delete chat[`custom${type.charAt(0).toUpperCase() + type.slice(1)}`]
-    await m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+    await m.reply(
+`‧˚꒰👛୭ *_𝐌 𝐄 𝐍 𝐒 𝐀 𝐉 𝐄 𝐄𝐋𝐈𝐌𝐈𝐍𝐀𝐃𝐎_*
 
-╭─「 *MENSAJE ELIMINADO* 」─╮
-│ 🗑️ *Tipo:* ${type}
-│ ❌ *Estado:* Eliminado
-╰─────────────
-> *Volvió al mensaje por defecto* 💌`)
+╭───INFO ꒰🗑️꒱────╮
+‧˚꒰🗑️୭ Tipo: ${type}
+‧˚꒰❌୭ Estado: Eliminado
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Volvió al mensaje por defecto 💌`)
   }
 }
 
