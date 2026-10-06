@@ -6,31 +6,29 @@ import { tmpdir } from 'os'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) {
-        await m.reply(`🤖 *IA PERUANA*\n\n*Ejemplo:* ${usedPrefix}ia ¿qué tal causa?`)
+        await m.reply(`‧˚꒰👛୭ *_𝐈 𝐀_*\n\n꒰🍨꒱ Ejemplo: ${usedPrefix}ia ¿qué más mi pana?`)
         return
     }
 
     await m.react('⏳')
 
     try {
-        // 1. PEDIR RESPUESTA A GEMINI BIEN PERUANO
-        let aiUrl = `https://api.stellarwa.xyz/ai/gemini?text=${encodeURIComponent(text + ". Responde de forma normal, clara, profesional y amable. Sin jerga. Máximo 2 líneas")}&key=proyectsV2`
+        let aiUrl = `https://api.stellarwa.xyz/ai/gemini?text=${encodeURIComponent(text + ". Responde como una venezolana coqueta, maracucha, usa palabras venezolanas como pana, chamo, verga, marico, burda, fino, etc. Se dulce y coqueta pero venezolana. Máximo 2 líneas cortas")}&key=proyectsV2`
         let aiRes = await fetch(aiUrl)
         let aiJson = await aiRes.json()
 
-        let respuesta = aiJson.result || aiJson.data || aiJson.response || "No te entendí pe causa"
+        let respuesta = aiJson.result || aiJson.data || aiJson.response || "Verga chamo no te entendí"
 
         if(respuesta.length > 200) respuesta = respuesta.substring(0, 200) + "..."
 
-        // 2. CONVERTIR A AUDIO - SUENA MÁS GRAVE CON ES
         let url = googleTTS.getAudioUrl(respuesta, {
-            lang: 'es', // español latino suena más de hombre
+            lang: 'es',
             slow: false,
             host: 'https://translate.google.com',
             timeout: 10000,
         })
 
-        let tmpFilePath = path.join(tmpdir(), `ia-pe-${Date.now()}.opus`)
+        let tmpFilePath = path.join(tmpdir(), `ia-vzla-${Date.now()}.opus`)
 
         await new Promise((resolve, reject) => {
             ffmpeg(url)
@@ -60,7 +58,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     } catch (e) {
         console.log(e)
         await m.react('❌')
-        await m.reply(`⚠️ Error: ${e.message}`)
+        await m.reply(`‧˚꒰👛୭ *_𝐄 𝐑 𝐑 𝐎 𝐑_*\n\n꒰🍧꒱ ${e.message}`)
     }
 }
 
