@@ -3,23 +3,24 @@ let handler = async (m, { conn }) => {
         await m.react('🔗')
         let link = await conn.groupInviteCode(m.chat)
 
-        let texto = `𝐃𝐎𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+        let texto =
+`‧˚꒰👛୭ *_𝐋 𝐈 𝐍 𝐊  𝐃𝐄𝐋  𝐆 𝐑 𝐔 𝐏 𝐎_*
 
-╭─「 *LINK DEL GRUPO* 」─╮
-│ 🔗 *Invitación:*
-│ https://chat.whatsapp.com/${link}
-╰─────────────
+╭───LINK ꒰🔗꒱────╮
+‧˚꒰🌼୭ https://chat.whatsapp.com/${link}
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-├─「 *NOTAS IMPORTANTES* 」─
-│ ⚡ *Solo admins pueden resetear el link*
-│ ⚡ *No lo compartas con desconocidos*
-╰─────────────
-> *Cuida tu grupo* 💌`
+╭───NOTAS ꒰⚠️꒱────╮
+‧˚꒰🍧୭ Solo admins pueden resetear el link
+‧˚꒰🍧୭ No lo compartas con desconocidos
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Cuida tu grupo preciosa 💌`
 
         await conn.reply(m.chat, texto, m)
     } catch (e) {
         await m.react('❌')
-        m.reply(`𝐃𝐎𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> ❌ *Error:* No pude obtener el link. ¿Soy admin?`)
+        m.reply(`‧˚꒰👛୭ *_𝐄 𝐑 𝐑 𝐎 𝐑_*\n\n꒰🍧꒱ No pude obtener el link ¿Soy admin?`)
     }
 }
 
