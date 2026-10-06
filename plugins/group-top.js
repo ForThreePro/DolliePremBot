@@ -3,19 +3,20 @@ import path from 'path'
 
 let user = a => '@' + a.split('@')[0]
 
-function handler(m, { groupMetadata, command, conn, text }) {
-    if (!groupMetadata) return m.reply('𝐃𝐎𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> *Este comando solo funciona en grupos*')
-    if (!text) return m.reply(`𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+function handler(m, { groupMetadata, command, conn, text, usedPrefix }) {
+    if (!groupMetadata) return m.reply('‧˚꒰👛୭ *_𝐀 𝐕 𝐈 𝐒 𝐎_*\n\n꒰🍧꒱ Este comando solo funciona en grupos')
+    if (!text) return m.reply(
+`‧˚꒰👛୭ *_𝐓 𝐎 𝐏 𝟏 𝟎_*
 
-╭─「 *TOP 10* 」─╮
-│ 🪄 *Ejemplo:*
-│ ${usedPrefix || '.'}top Mejores en PVP
-│ ${usedPrefix || '.'}top Más activos
-╰─────────────
-> *Escribe de qué es el top* 💌`)
+╭───USO ꒰🏆꒱────╮
+꒰🍨꒱ ${usedPrefix || '.'}top Mejores en PVP
+꒰🍨꒱ ${usedPrefix || '.'}top Más activos
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍧꒱ Escribe de qué es el top preciosa 💅`)
 
     let ps = groupMetadata.participants.map(v => v.id)
-    if (ps.length < 10) return m.reply('𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰\n\n> ⚡ *Se necesitan mínimo 10 miembros en el grupo*')
+    if (ps.length < 10) return m.reply('‧˚꒰👛୭ *_𝐀 𝐕 𝐈 𝐒 𝐎_*\n\n꒰🍧꒱ Se necesitan mínimo 10 miembros en el grupo')
 
     let a = ps.getRandom()
     let b = ps.getRandom()
@@ -34,25 +35,23 @@ function handler(m, { groupMetadata, command, conn, text }) {
 
     let vn = `https://hansxd.nasihosting.com/sound/sound${k}.mp3`
 
-    let top = `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+    let top =
+`‧˚꒰👛୭ *_𝐓 𝐎 𝐏 𝟏 𝟎_*
 
-╭─「 *TOP 10* 」─╮
-│ 🏆 *Categoría:* ${text.toUpperCase()}
-╰─────────────
+╭───${text.toUpperCase()} ꒰🏆꒱────╮
+${x} 1. ${user(a)}
+${x} 2. ${user(b)}
+${x} 3. ${user(c)}
+${x} 4. ${user(d)}
+${x} 5. ${user(e)}
+${x} 6. ${user(f)}
+${x} 7. ${user(g)}
+${x} 8. ${user(h)}
+${x} 9. ${user(i)}
+${x} 10. ${user(j)}
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-├─「 *RANKING* 」─
-${x} *1.* ${user(a)}
-${x} *2.* ${user(b)}
-${x} *3.* ${user(c)}
-${x} *4.* ${user(d)}
-${x} *5.* ${user(e)}
-${x} *6.* ${user(f)}
-${x} *7.* ${user(g)}
-${x} *8.* ${user(h)}
-${x} *9.* ${user(i)}
-${x} *10.* ${user(j)}
-╰─────────────
-> *Ranking aleatorio* ✨`
+꒰🍨꒱ Ranking aleatorio ✨`
 
     m.reply(top, null, { mentions: [a, b, c, d, e, f, g, h, i, j]})
 }
