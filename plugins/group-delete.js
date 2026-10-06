@@ -1,12 +1,14 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
 
-if (!m.quoted) return conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓. 🩰
+if (!m.quoted) return conn.reply(m.chat,
+`‧˚꒰👛୭ *_𝐃 𝐄 𝐋 𝐄 𝐓 𝐄_*
 
-╭─「 *ELIMINAR MENSAJE* 」─╮
-│ 🪄 *Uso:* Responde al mensaje
-│ 🪞 *Ejemplo:* ${usedPrefix + command}
-╰─────────────
-> *Debes responder a un mensaje para borrarlo*`, m)
+╭───USO ꒰🗑️꒱────╮
+꒰🍨꒱ Responde al mensaje que quieres borrar
+꒰🍨꒱ Ejemplo: ${usedPrefix + command}
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍧꒱ Debes responder a un mensaje para borrarlo preciosa`, m)
 
 try {
 let delet = m.message.extendedTextMessage.contextInfo.participant
