@@ -1,12 +1,14 @@
 const handler = async (m, { conn, command }) => {
   if (!m.mentionedJid[0] &&!m.quoted) {
-    let texto = `🤍 *MANUAL DULCE* 🤍
+    let texto =
+`‧˚꒰👛୭ *_𝐌 𝐀 𝐍 𝐔 𝐀 𝐋_*
 
-*Uso:*
-.${command} @user → Para ${command === 'promote' || command === 'promover' || command === 'daradmin'? 'promover' : 'degradar'}
-.${command} → Responde al mensaje del user
+╭───USO ꒰🌼꒱────╮
+꒰🍨꒱.${command} @user → Para ${command === 'promote' || command === 'promover' || command === 'daradmin'? 'promover' : 'degradar'}
+꒰🍨꒱.${command} → Responde al mensaje del user
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-> *Solo admins pueden usarlo* 🌸`
+꒰🍧꒱ Solo admins preciosa`
     return m.reply(texto, m.chat)
   }
 
@@ -14,38 +16,38 @@ const handler = async (m, { conn, command }) => {
   let action = command === 'promote' || command === 'promover' || command === 'daradmin'? 'promote' : 'demote'
 
   let msgAccion = action === 'promote'
-  ? `🤍 *ASCENSO DULCE* 🤍
+ ? `‧˚꒰👛୭ *_𝐀 𝐒 𝐂 𝐄 𝐍 𝐒 𝐎_*
 
-╭─「 *CORONACION* 」─╮
-│ *𝐔𝐒𝐔𝐀𝐑𝐈𝐎* : @${user.split('@')[0]}
-│ *𝐄𝐒𝐓𝐀𝐃𝐎* : ✅ *𝐀𝐇𝐎𝐑𝐀 𝐄𝐒 𝐀𝐃𝐌𝐈𝐍*
-│ *𝐏𝐑𝐎𝐌𝐎𝐕𝐈𝐃𝐎 𝐏𝐎𝐑* : @${m.sender.split('@')[0]}
-╰─────────────
+╭───CORONACIÓN ꒰👑꒱────╮
+‧˚꒰👧🏻୭ Usuario: @${user.split('@')[0]}
+‧˚꒰✅୭ Estado: AHORA ES ADMIN 💅
+‧˚꒰🌼୭ Promovido por: @${m.sender.split('@')[0]}
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-├─「 *NUEVOS PODERES* 」─
-│ ✨ Expulsar y Promover
-│ ✨ Editar info del grupo
-│ ✨ Cambiar ajustes
-│ ✨ Mandar anuncios
-╰─────────────
+╭───NUEVOS PODERES ꒰✨꒱────╮
+‧˚꒰🌼୭ Expulsar y Promover
+‧˚꒰🌼୭ Editar info del grupo
+‧˚꒰🌼୭ Cambiar ajustes
+‧˚꒰🌼୭ Mandar anuncios
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-> *Con grandes poderes vienen grandes dulzuras* 🌸`
-    : `🤍 *DESCENSO DULCE* 🤍
+꒰🍨꒱ Con grandes poderes vienen grandes dulzuras ✨`
+    : `‧˚꒰👛୭ *_𝐃 𝐄 𝐒 𝐂 𝐄 𝐍 𝐒 𝐎_*
 
-╭─「 *DEGRADACION* 」─╮
-│ *𝐔𝐒𝐔𝐀𝐑𝐈𝐎* : @${user.split('@')[0]}
-│ *𝐄𝐒𝐓𝐀𝐃𝐎* : ❌ *𝐘𝐀 𝐍𝐎 𝐄𝐒 𝐀𝐃𝐌𝐈𝐍*
-│ *𝐃𝐄𝐆𝐑𝐀𝐃𝐀𝐃𝐎 𝐏𝐎𝐑* : @${m.sender.split('@')[0]}
-╰─────────────
+╭───DEGRADACIÓN ꒰📉꒱────╮
+‧˚꒰👧🏻୭ Usuario: @${user.split('@')[0]}
+‧˚꒰❌୭ Estado: YA NO ES ADMIN
+‧˚꒰🌼୭ Degradado por: @${m.sender.split('@')[0]}
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-├─「 *PODERES REMOVIDOS* 」─
-│ 🚫 Expulsar y Promover
-│ 🚫 Editar info del grupo
-│ 🚫 Cambiar ajustes
-│ 🚫 Mandar anuncios
-╰─────────────
+╭───PODERES REMOVIDOS ꒰🚫꒱────╮
+‧˚꒰🍧୭ Expulsar y Promover
+‧˚꒰🍧୭ Editar info del grupo
+‧˚꒰🍧୭ Cambiar ajustes
+‧˚꒰🍧୭ Mandar anuncios
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
-> *Todo poder vuelve a su origen* 🌸`
+꒰🍨꒱ Todo poder vuelve a su origen`
 
   await m.react(action === 'promote'? '👑' : '📉')
   await conn.groupParticipantsUpdate(m.chat, [user], action)
