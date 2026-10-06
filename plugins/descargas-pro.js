@@ -3,26 +3,36 @@ import yts from 'yt-search'
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
     try {
-        if (!text.trim()) return await conn.reply(m.chat, '*⭐ Ingresa el nombre o enlace de la canción.*', m)
+        if (!text.trim()) return await conn.reply(m.chat,
+`‧˚꒰👛୭ *_𝐏 𝐋 𝐀 𝐘_*
+
+꒰🍧꒱ Ingresa el nombre o enlace de la canción preciosa
+꒰🍨꒱ Ejemplo: ${usedPrefix}play bad bunny`, m)
 
         const videoMatch = text.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/|v\/))([a-zA-Z0-9_-]{11})/)
         const query = videoMatch ? 'https://youtu.be/' + videoMatch[1] : text
         const search = await yts(query)
         const result = videoMatch ? search.videos.find(v => v.videoId === videoMatch[1]) || search.all[0] : search.all[0]
-        if (!result) throw 'No se encontraron resultados.'
+        if (!result) throw 'No se encontraron resultados preciosa'
 
         const { title, thumbnail, timestamp, views, videoId, author, seconds } = result
-        if (seconds > 1800) throw 'El contenido supera el límite de duración (30 minutos).'
+        if (seconds > 1800) throw 'El contenido supera el límite de 30 minutos'
 
         const vistas = formatViews(views)
         const canal = author.name
         const shortUrl = `https://youtu.be/${videoId}`
 
-        const info = `📌 *Título:* ${title}
-👤 *Canal:* ${canal}
-👁️ *Vistas:* ${vistas}
-⏱️ *Duración:* ${timestamp}
-🔗 *Enlace:* ${shortUrl}`
+        const info =
+`‧˚꒰👛୭ *_𝐘 𝐓 - 𝐀 𝐔 𝐃 𝐈 𝐎_*
+
+╭───INFO ꒰🎵꒱────╮
+‧˚꒰🎵୭ ${title}
+‧˚꒰👧🏻୭ ${canal}
+‧˚꒰👁️୭ ${vistas} | ⏱️ ${timestamp}
+‧˚꒰🔗୭ ${shortUrl}
+╰─────── ݁ ˖Ი𐑼⋆────╯
+
+꒰🍨꒱ Bajando audio ✨`
 
         const thumb = (await conn.getFile(thumbnail)).data
 
@@ -31,7 +41,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
             getMediaUrl(shortUrl)
         ])
 
-        if (!mediaUrl) throw 'No se pudo obtener el audio.'
+        if (!mediaUrl) throw 'No se pudo obtener el audio'
 
         await conn.sendMessage(m.chat, { 
             audio: { url: mediaUrl }, 
@@ -40,7 +50,10 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         }, { quoted: m })
 
     } catch (e) {
-        return await conn.reply(m.chat, typeof e === 'string' ? e : 'Ocurrió un error: ' + e.message, m)
+        return await conn.reply(m.chat,
+`‧˚꒰👛୭ *_𝐄 𝐑 𝐑 𝐎 𝐑_*
+
+꒰🍧꒱ ${typeof e === 'string' ? e : e.message}`, m)
     }
 }
 
