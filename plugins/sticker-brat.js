@@ -7,7 +7,13 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   let q = m.quoted ? m.quoted : m
   let txt = text || q.text || q.caption || q.body || ''
 
-  if (!txt) return m.reply(`🛸 *[ NOX BOT MD ]* 🌌\n\n🚩 *Escribe el texto para generar el sticker Brat.*\n📌 Ejemplo: *${usedPrefix + command} Hola*`)
+  if (!txt) return m.reply(
+`‧˚꒰👛୭ *_𝐁 𝐑 𝐀 𝐓_*
+
+╭───ERROR ꒰🚩꒱────╮
+‧˚꒰🌼୭ Escribe el texto para el sticker
+‧˚꒰🍨୭ Ejemplo: ${usedPrefix + command} Hola
+╰─────── ݁ ˖Ი𐑼⋆────╯`)
 
   await m.react('🖌️')
 
@@ -17,7 +23,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   let response = await fetch(apiUrl)
   if (!response.ok) {
     await m.react('❌')
-    return m.reply(`❌ *Error al generar el sticker.*`)
+    return m.reply(`‧˚꒰👛୭ *_𝐄 𝐑 𝐑 𝐎 𝐑_*\n\n꒰🍧꒱ Error al generar el sticker`)
   }
 
   let inputBuffer = await response.buffer()
