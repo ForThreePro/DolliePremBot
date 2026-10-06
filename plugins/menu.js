@@ -2,7 +2,7 @@ import os from 'os'
 import { performance } from 'perf_hooks'
 
 let handler = async (m, { conn, usedPrefix }) => {
-  let loadMsg = await conn.reply(m.chat, `𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓 🩰\n\n⏳ *Cargando menú...*`, m)
+  let loadMsg = await conn.reply(m.chat, `‧˚꒰👛୭ *_𝐂 𝐀 𝐑 𝐆 𝐀 𝐍 𝐃 𝐎_*\n\n꒰⏳꒱ Cargando menú...`, m)
 
   let uptime = process.uptime() * 1000
   let _uptime = clockString(uptime)
@@ -27,19 +27,19 @@ let handler = async (m, { conn, usedPrefix }) => {
     else groups[category].push(plugin.help)
   }
 
-  // DISEÑO DOLLS ORIGINAL
   const catDesign = {
     fun: { icon: '🦩', name: 'FUN' },
     owner: { icon: '💎', name: 'OWNER' },
     group: { icon: '🛍️', name: 'GRUPOS' },
-    admin: { icon: '🎡', name: 'GRUPOS' },
+    grupos: { icon: '🛍️', name: 'GRUPOS' },
+    admin: { icon: '🎡', name: 'ADMIN' },
     config: { icon: '🎀', name: 'CONFIG' },
     downloader: { icon: '🪩', name: 'DESCARGAS' },
     tools: { icon: '🪷', name: 'TOOLS' },
     search: { icon: '🌄', name: 'SEARCH' },
     diversión: { icon: '🧋', name: 'DIVERSIÓN' },
     ff: { icon: '🌟', name: 'FREE FIRE' },
-    ia: { icon: '🩰', name: 'INTELIGENCIA ARTIFICIAL' },
+    ia: { icon: '🩰', name: 'IA' },
     main: { icon: '🪞', name: 'MAIN' },
     info: { icon: '🌷', name: 'INFO' },
     sticker: { icon: '🎐', name: 'STIKERS' },
@@ -47,36 +47,40 @@ let handler = async (m, { conn, usedPrefix }) => {
     otros: { icon: '🤍', name: 'MISC' }
   }
 
-  let menu = `(🌷)" _𝐌𝐄𝐍𝐔́ 𝐃𝐎𝐋𝐋𝐈𝐄_. 🩰
+  let menu =
+`‧˚꒰👛୭ *_𝐌 𝐄 𝐍 𝐔 𝐃 𝐎 𝐋 𝐋 𝐒_* 🩰
 
-¡𝐃𝐄𝐒𝐂𝐔𝐁𝐑𝐄 𝐈𝐍𝐂𝐑𝐄𝐈́𝐁𝐋𝐄𝐒 𝐂𝐎𝐌𝐀𝐍𝐃𝐎𝐒!!
+꒰🍨꒱ ¡DESCUBRE MIS COMANDOS PRECIOSA!
 
-(🪞).¡¡ *𝙒 𝙀 𝙇 𝘾 𝙊 𝙈 𝙀*!!
-(🌷). @${m.sender.split('@')[0]}
-
-> \`\` ${fecha[0].trim()}, ${fecha[1].trim()}│ Hora: ${hora} \`\`
+╭───WELCOME ꒰🪞꒱────╮
+‧˚꒰👧🏻୭ @${m.sender.split('@')[0]}
+‧˚꒰🌼୭ ${fecha[0].trim()}, ${fecha[1].trim()}
+‧˚꒰⏰୭ Hora: ${hora}
+‧˚꒰✨୭ Uptime: ${_uptime} | Users: ${totalreg} | Cmds: ${totalcmd}
+╰─────── ݁ ˖Ი𐑼⋆────╯
 
 `
 
   for (let category in groups) {
     let design = catDesign[category] || { icon: '✨', name: category.toUpperCase() }
-    menu += `╭───${design.name}${design.icon}────╮\n`
+    menu += `╭───${design.name} ꒰${design.icon}꒱────╮\n`
     for (let cmd of groups[category]) {
-      menu += `│ ${design.icon} ${usedPrefix}${cmd}\n`
+      menu += `‧˚꒰${design.icon}୭ ${usedPrefix}${cmd}\n`
     }
-    menu += `╰─────── ୨୧ ────╯\n\n`
+    menu += `╰─────── ݁ ˖Ი𐑼⋆────╯\n\n`
   }
 
-  menu += `───────୨୧──────
- 🪞 *BOT:* 𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓
- 🌸 *Creador:* 𝐃𝐨𝐥𝐥𝐢𝐞 𝐭𝐞𝐚𝐦🌼
- 🦩 *Versión:* 3.0.0 Premium Edition
+  menu +=
+`─────── ݁ ˖Ი𐑼⋆──────
+‧˚꒰🪞୭ BOT: DOLLS BOT
+‧˚꒰🌸୭ Creador: Dollie Team
+‧˚꒰🦩୭ Versión: 3.0.0 Premium
 
-> 𝐃𝐎𝐋𝐋𝐈𝐄 𝐁𝐎𝐓 al servicio del chat`
+꒰🍨꒱ DOLLS al servicio del chat 💅`
 
   await conn.sendMessage(m.chat, { delete: loadMsg.key })
   await conn.sendMessage(m.chat, {
-    image: { url: 'https://files.evogb.win/n4InsB.jpg' }, // pon tu logo de dollie aquí
+    image: { url: 'https://files.evogb.win/n4InsB.jpg' },
     caption: menu,
     mentions: [m.sender]
   }, { quoted: m })
